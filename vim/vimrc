@@ -1,0 +1,131 @@
+syntax on
+set nu
+set ruler
+set smartindent
+set splitbelow
+set hidden
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set encoding=UTF-8
+set backspace=indent,eol,start
+highlight Visual cterm=bold ctermbg=darkgrey
+autocmd InsertLeave * se nocul
+autocmd InsertEnter * se cul
+
+" Buffer move
+set wildmenu wildmode=full 
+set wildchar=<Tab> wildcharm=<C-Z>
+map <F10> <C-^>
+
+" Terminal NORMAL mode
+tnoremap <m-Q> <c-\><c-n>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+
+" Vundle and plugin
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+Plugin 'preservim/nerdcommenter'
+Plugin 'preservim/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'sillybun/vim-repl'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'skywind3000/vim-terminal-help'
+Plugin 'skywind3000/asynctasks.vim'
+Plugin 'skywind3000/asyncrun.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" AirlineTheme
+let g:airline_theme='sol'
+
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
+
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+            \ quit | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+            \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Open the existing NERDTree on each new tab.
+" autocmd BufWinEnter * silent NERDTreeMirror
+
+" Autoformat
+" au BufWrite * :Autoformat
+noremap <F3> :Autoformat<CR>
+let g:formatter_yapf_style = 'google'
+
+" YCM
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" asyncrun.vim
+let g:asyncrun_open = 6
+let g:asynctasks_term_pos = 'quickfix'
+let g:asynctasks_term_reuse = 1
+noremap <silent><F5> :AsyncTask file-run<cr>
+noremap <silent><F9> :AsyncTask file-build<cr>
+
+" vim-repl
+nnoremap <leader>r :REPLToggle<Cr>
+nnoremap <leader>e :REPLSendSession<Cr>
+let g:repl_python_pre_launch_command = 'source venv/bin/activate'
+let g:repl_program = {
+            \   'python': 'ptpython',
+            \   'default': 'zsh',
+            \   'r': 'R',
+            \   'lua': 'lua'
+            \   }
+let g:repl_predefine_python = {
+            \   'numpy': 'import numpy as np',
+            \   'pandas': 'import pandas as pd',
+            \   'matplotlib': 'import matplotlib.pyplot as plt'
+            \   }
+let g:repl_exit_commands = {
+            \   'ptpython': 'exit()',
+            \   'R': 'q()',
+            \   'bash': 'exit',
+            \   'zsh': 'exit',
+            \   'default': 'exit'
+            \   }
+let g:repl_position = 3
+let g:repl_console_name = 'REPL'
+let g:repl_cursor_down = 1
+let g:repl_python_auto_send_unfinish_line = 0
+let g:repl_python_automerge = 1
+let g:repl_python_auto_import = 0
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<F1>"
