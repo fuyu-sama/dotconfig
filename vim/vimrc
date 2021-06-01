@@ -133,3 +133,8 @@ let g:repl_python_auto_import = 0
 
 " ultisnips
 let g:UltiSnipsExpandTrigger="<F1>"
+
+" ALE
+let g:ale_r_lintr_options = "with_defaults(camel_case_linter = NULL)"
+let g:ale_r_lintr_options = "with_defaults(object_name_linter = NULL)"
+
