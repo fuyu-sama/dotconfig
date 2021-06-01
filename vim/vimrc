@@ -55,6 +55,7 @@ Plugin 'skywind3000/asynctasks.vim'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
