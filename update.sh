@@ -5,6 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 git pull origin
 # ptpython
 ln -f ptpython/config.py $HOME/.config/ptpython/config.py
+ln -f ptpython/flake8 $HOME/.config/flake8
 # tmux
 ln -f tmux/tmux.conf $HOME/.tmux.conf
 # vim
