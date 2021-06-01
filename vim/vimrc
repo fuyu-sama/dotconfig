@@ -9,6 +9,7 @@ set tabstop=4
 set shiftwidth=4
 set encoding=UTF-8
 set backspace=indent,eol,start
+set signcolumn=number
 highlight Visual cterm=bold ctermbg=darkgrey
 highlight SignColumn ctermbg=darkgrey
 autocmd InsertLeave * se nocul
