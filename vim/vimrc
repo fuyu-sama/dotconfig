@@ -10,6 +10,7 @@ set shiftwidth=4
 set encoding=UTF-8
 set backspace=indent,eol,start
 highlight Visual cterm=bold ctermbg=darkgrey
+highlight SignColumn ctermbg=darkgrey
 autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
 
