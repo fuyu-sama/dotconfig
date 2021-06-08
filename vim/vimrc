@@ -92,7 +92,7 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 " Autoformat
 " au BufWrite * :Autoformat
 noremap <F3> :Autoformat<CR>
-let g:formatter_yapf_style = 'google'
+let g:formatter_yapf_style = 'pep8'
 autocmd FileType vim,tex let b:autoformat_autoindent=0
 let r_indent_align_args = 0
 
