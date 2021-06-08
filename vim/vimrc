@@ -114,7 +114,7 @@ let g:repl_python_pre_launch_command = 'source venv/bin/activate'
 let g:repl_program = {
             \   'python': 'ptpython',
             \   'default': 'zsh',
-            \   'r': 'R',
+            \   'r': 'R --no-save',
             \   'lua': 'lua'
             \   }
 let g:repl_predefine_python = {
