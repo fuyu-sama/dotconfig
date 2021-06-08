@@ -15,4 +15,5 @@ ln -f vim/tasks.ini $HOME/.vim/tasks.ini
 ln -f -s $DIR/vim/UltiSnips $HOME/.vim/UltiSnips
 # zsh
 ln -f zsh/zshrc $HOME/.zshrc
+ln -f zsh/zprofile $HOME/.zprofile
 ln -f zsh/myys.zsh-theme $HOME/.oh-my-zsh/custom/themes/myys.zsh-theme
