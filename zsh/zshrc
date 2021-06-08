@@ -126,3 +126,8 @@ export PYTHON_CONFIGURE_OPTS="--enable-shared"
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 
+# thefuck
+eval $(thefuck --alias)
+eval $(thefuck --alias FUCK)
+eval $(thefuck --alias cao)
+eval $(thefuck --alias CAO)
