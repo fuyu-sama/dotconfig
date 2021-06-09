@@ -38,6 +38,10 @@ pyenv install 3.8.10
 pyenv global 3.8.10
 pip install ptpython flask8 yapf thefuck
 
+# autojump
+git clone git://github.com/wting/autojump.git $HOME/autojump
+$HOME/autojump/install.py
+
 # vim
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
