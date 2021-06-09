@@ -25,29 +25,28 @@ then
     sudo pacman -S --needed base-devel openssl zlib xz
 fi
 
-# vim
-git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-python3 $HOME/.vim/bundle/YouCompleteMe/install.py
-
-# pyenv
-git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-
 # ohmyzsh
 touch $HOME/.user_path
 sh zsh/install-ohmyzsh.sh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-exec zsh
+# pyenv
+git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+source $HOME/.zshrc
+pyenv install 3.8.10
+pyenv global 3.8.10
+pip install ptpython flask8 yapf thefuck
+
+# vim
+git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+python $HOME/.vim/bundle/YouCompleteMe/install.py
+
+# final config
 if [ ! -d $HOME/.config/ptpython ] 
 then 
     mkdir $HOME/.config/ptpython 
 fi
-pyenv install 3.8.10
-pyenv global 3.8.10
-pip install ptpython
-pip install flask8
-pip install yapf
-pip install thefuck
 ./update.sh
+exec zsh

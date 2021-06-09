@@ -317,7 +317,6 @@ EOF
     exit
   fi
 
-  exec zsh -l
 }
 
 main "$@"
