@@ -36,7 +36,7 @@ ln -f zsh/zprofile $HOME/.zprofile
 # pyenv
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 source $HOME/.zshrc
-source $HOMR/.zprofile
+source $HOME/.zprofile
 pyenv install 3.8.10
 pyenv global 3.8.10
 pip install ptpython flake8 yapf thefuck
