@@ -43,7 +43,9 @@ pip install ptpython flake8 yapf thefuck
 
 # autojump
 git clone git://github.com/wting/autojump.git $HOME/autojump
-$HOME/autojump/install.py
+cd $HOME/autojump
+./install.py
+cd -
 
 # vim
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
