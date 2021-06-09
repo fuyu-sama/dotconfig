@@ -10,7 +10,7 @@ then
     sudo apt install build-essential libssl-dev zlib1g-dev libbz2-dev \
         libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev \
         xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-elif [[ $dist == "opensuse-leap" ]] 
+elif [[ $dist == '"opensuse-leap"' ]] 
 then
     sudo zypper install zsh tmux make cmake neofetch
     # python build environment
