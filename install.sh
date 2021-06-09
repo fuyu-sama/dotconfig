@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-dist==`awk -F= '$1=="ID" { print $2 ;}' /etc/os-release`
+dist=`awk -F= '$1=="ID" { print $2 ;}' /etc/os-release`
 
 if [[ $dist == "debian" ]] || [[ $dist == "ubuntu" ]]
 then
