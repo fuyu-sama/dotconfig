@@ -28,6 +28,7 @@ fi
 # vim
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
+python3 $HOME/.vim/bundle/YouCompleteMe/install.py
 
 # pyenv
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
