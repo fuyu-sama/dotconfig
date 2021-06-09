@@ -30,10 +30,13 @@ touch $HOME/.user_path
 sh zsh/install-ohmyzsh.sh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+ln -f zsh/zshrc $HOME/.zshrc
+ln -f zsh/zprofile $HOME/.zprofile
 
 # pyenv
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 source $HOME/.zshrc
+source $HOMR/.zprofile
 pyenv install 3.8.10
 pyenv global 3.8.10
 pip install ptpython flask8 yapf thefuck
