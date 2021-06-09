@@ -51,6 +51,7 @@ git clone git://github.com/wting/autojump.git $HOME/autojump
 cd $HOME/autojump
 ./install.py
 cd -
+rm -rf $HOME/autojump
 
 # vim
 git clone https://github.com/vim/vim.git $HOME/.vim/vim
