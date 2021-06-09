@@ -16,11 +16,13 @@ then
         libxpm-dev libxt-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev
 elif [[ $dist == '"opensuse-leap"' ]] 
 then
-    sudo zypper install zsh tmux make cmake neofetch
+    sudo zypper install zsh tmux make cmake gcc9 gcc9-c++ neofetch
     # python build environment
     sudo zypper install gcc automake bzip2 libbz2-devel xz xz-devel \
         openssl-devel ncurses-devel readline-devel zlib-devel tk-devel \
         libffi-devel sqlite3-devel
+    export CC=/usr/bin/gcc-9
+    export CXX=/usr/bin/g++-9
 
 elif [[ $dist == "arch" ]]
 then
@@ -39,7 +41,6 @@ ln -f zsh/zprofile $HOME/.zprofile
 
 # pyenv
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-source $HOME/.zshrc
 source $HOME/.zprofile
 pyenv install 3.8.10
 pyenv global 3.8.10
