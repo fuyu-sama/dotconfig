@@ -10,6 +10,10 @@ then
     sudo apt install build-essential libssl-dev zlib1g-dev libbz2-dev \
         libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev \
         xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+    # vim build environment
+    sudo apt install libncurses5-dev libgnome2-dev libgnomeui-dev \
+        libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev \
+        libxpm-dev libxt-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev
 elif [[ $dist == '"opensuse-leap"' ]] 
 then
     sudo zypper install zsh tmux make cmake neofetch
@@ -48,6 +52,21 @@ cd $HOME/autojump
 cd -
 
 # vim
+git clone https://github.com/vim/vim.git $HOME/.vim/vim
+cd $HOME/.vim/vim
+./configure --with-features=huge \
+    --enable-multibyte \
+    --enable-rubyinterp=yes \
+    --enable-python3interp=yes \
+    --with-python-config-dir=$HOME/.pyenv/versions/3.8.10/lib/python3.8/config-3.8-x86_64-linux-gnu \
+    --enable-perlinterp=yes \
+    --enable-luainterp=yes \
+    --enable-cscope \
+    --prefix=$HOME/.local/prefix/vim/8.2
+make && make install
+cd -
+source $HOME/.zshrc
+
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 python $HOME/.vim/bundle/YouCompleteMe/install.py

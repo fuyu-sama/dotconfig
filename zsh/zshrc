@@ -105,17 +105,17 @@ alias venvactivate="source venv/bin/activate"
 
 # source folder
 export PATH=$HOME/.local/source:$PATH
+export PATH=$HOME/.local/prefix/vim/8.2/bin:$PATH
 source $HOME/.user_path     # add user specific config here
 
 # zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bold"
 export TERMINFO=/usr/share/terminfo
 
-# >>> pyenv initialize >>>
+# pyenv
 export PYENV_VIRTUALENV_DISABLE_PROMPT=0
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
-# <<< pyenv initialize <<<
 
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
