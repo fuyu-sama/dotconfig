@@ -39,7 +39,7 @@ source $HOME/.zshrc
 source $HOMR/.zprofile
 pyenv install 3.8.10
 pyenv global 3.8.10
-pip install ptpython flask8 yapf thefuck
+pip install ptpython flake8 yapf thefuck
 
 # autojump
 git clone git://github.com/wting/autojump.git $HOME/autojump
