@@ -16,7 +16,7 @@ then
         libxpm-dev libxt-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev
 elif [[ $dist == '"opensuse-leap"' ]] 
 then
-    sudo zypper install zsh tmux make cmake gcc9 gcc9-c++ neofetch
+    sudo zypper install zsh tmux make cmake gcc-c++ gcc9 gcc9-c++ neofetch
     # python build environment
     sudo zypper install gcc automake bzip2 libbz2-devel xz xz-devel \
         openssl-devel ncurses-devel readline-devel zlib-devel tk-devel \
