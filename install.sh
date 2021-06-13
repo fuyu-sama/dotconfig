@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-./update.sh
 if [ ! -d Downloads ] 
 then
     mkdir Downloads
@@ -41,6 +40,7 @@ touch $HOME/.user_path
 sh zsh/install-ohmyzsh.sh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+./update.sh
 
 # pyenv
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
