@@ -23,8 +23,13 @@ then
         automake bzip2 libbz2-devel xz xz-devel openssl-devel ncurses-devel \
         readline-devel zlib-devel tk-devel libffi-devel sqlite3-devel libevent-devel
     export CC=/usr/bin/gcc-9
-    export CXX=/usr/bin/g++-9
-
+    export CXX=/usr/bin/g++-9 
+    # tmux
+    git clone https://github.com/tmux/tmux.git Downloads/tmux
+    cd Downloads/tmux
+    ./configure
+    make && sudo make install
+    cd -
 elif [[ $dist == "arch" ]]
 then
     sudo pacman -Sy --needed zsh tmux make cmake neofetch \
@@ -36,8 +41,6 @@ touch $HOME/.user_path
 sh zsh/install-ohmyzsh.sh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-ln -f zsh/zshrc $HOME/.zshrc
-ln -f zsh/zprofile $HOME/.zprofile
 
 # pyenv
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
