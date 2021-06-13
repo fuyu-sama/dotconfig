@@ -1,35 +1,34 @@
 #!/usr/bin/env bash
 
-dist=`awk -F= '$1=="ID" { print $2 ;}' /etc/os-release`
 ./update.sh
+if [ ! -d Downloads ] 
+then
+    mkdir Downloads
+fi
+dist=`awk -F= '$1=="ID" { print $2 ;}' /etc/os-release`
 
 if [[ $dist == "debian" ]] || [[ $dist == "ubuntu" ]]
 then
     sudo apt update
-    sudo apt install zsh tmux make cmake neofetch
-    # python build environment
-    sudo apt install build-essential libssl-dev zlib1g-dev libbz2-dev \
+    sudo apt install zsh tmux make cmake neofetch \
+        build-essential libssl-dev zlib1g-dev libbz2-dev \
         libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev \
-        xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-    # vim build environment
-    sudo apt install libncurses5-dev libgnome2-dev libgnomeui-dev \
-        libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev \
-        libxpm-dev libxt-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev
+        xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+        libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev \
+        libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev ruby-dev \
+        lua5.1 liblua5.1-dev libperl-dev
 elif [[ $dist == '"opensuse-leap"' ]] 
 then
-    sudo zypper install zsh tmux make cmake gcc-c++ gcc9 gcc9-c++ neofetch
-    # python build environment
-    sudo zypper install gcc automake bzip2 libbz2-devel xz xz-devel \
-        openssl-devel ncurses-devel readline-devel zlib-devel tk-devel \
-        libffi-devel sqlite3-devel
+    sudo zypper install zsh make cmake gcc-c++ gcc9 gcc9-c++ neofetch \
+        automake bzip2 libbz2-devel xz xz-devel openssl-devel ncurses-devel \
+        readline-devel zlib-devel tk-devel libffi-devel sqlite3-devel libevent-devel
     export CC=/usr/bin/gcc-9
     export CXX=/usr/bin/g++-9
 
 elif [[ $dist == "arch" ]]
 then
-    sudo pacman -S zsh tmux make cmake neofetch
-    # python build environment
-    sudo pacman -S --needed base-devel openssl zlib xz
+    sudo pacman -Sy --needed zsh tmux make cmake neofetch \
+        base-devel openssl zlib xz
 fi
 
 # ohmyzsh
@@ -49,15 +48,12 @@ pyenv global 3.8.10
 pip install ptpython flake8 yapf thefuck
 
 # autojump
-git clone git://github.com/wting/autojump.git $HOME/autojump
-cd $HOME/autojump
-./install.py
-cd -
-rm -rf $HOME/autojump
+git clone git://github.com/wting/autojump.git Downloads/autojump
+Downloads/autojump/install.py
 
 # vim
-git clone https://github.com/vim/vim.git $HOME/.vim/vim
-cd $HOME/.vim/vim
+git clone https://github.com/vim/vim.git Downloads/vim
+cd Downloads/vim
 ./configure --with-features=huge \
     --enable-multibyte \
     --enable-rubyinterp=yes \
@@ -69,7 +65,6 @@ cd $HOME/.vim/vim
     --prefix=$HOME/.local/prefix/vim/8.2
 make && make install
 cd -
-source $HOME/.zshrc
 
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
