@@ -3,17 +3,30 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 # update git repository
 git pull origin
+
+# check whether dirs exist
+DIRS[0]=$HOME/.config
+DIRS[1]=$HOME/.config/ptpython
+DIRS[2]=$HOME/.vim 
+for i in ${DIRS[@]}
+do
+    if [ ! -d $i ] 
+    then 
+        mkdir $i
+    fi
+done
+
 # ptpython
-ln -f ptpython/config.py $HOME/.config/ptpython/config.py
-ln -f ptpython/flake8 $HOME/.config/flake8
+ln -f $DIR/ptpython/config.py $HOME/.config/ptpython/config.py
+ln -f $DIR/ptpython/flake8 $HOME/.config/flake8
 # tmux
-ln -f tmux/tmux.conf $HOME/.tmux.conf
+ln -f $DIR/tmux/tmux.conf $HOME/.tmux.conf
 # vim
-ln -f vim/vimrc $HOME/.vimrc
-ln -f vim/tasks.ini $HOME/.vim/tasks.ini
-[ -d $HOME/.vim/UltiSnips ] && rm $HOME/.vim/UltiSnips
+ln -f $DIR/vim/vimrc $HOME/.vimrc
+ln -f $DIR/vim/tasks.ini $HOME/.vim/tasks.ini
+[ -d $DIR/$HOME/.vim/UltiSnips ] && rm $HOME/.vim/UltiSnips
 ln -f -s $DIR/vim/UltiSnips $HOME/.vim/UltiSnips
 # zsh
-ln -f zsh/zshrc $HOME/.zshrc
-ln -f zsh/zprofile $HOME/.zprofile
-ln -f zsh/myys.zsh-theme $HOME/.oh-my-zsh/custom/themes/myys.zsh-theme
+ln -f $DIR/zsh/zshrc $HOME/.zshrc
+ln -f $DIR/zsh/zprofile $HOME/.zprofile
+ln -f $DIR/zsh/myys.zsh-theme $HOME/.oh-my-zsh/custom/themes/myys.zsh-theme

@@ -1,6 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 dist=`awk -F= '$1=="ID" { print $2 ;}' /etc/os-release`
+./update.sh
 
 if [[ $dist == "debian" ]] || [[ $dist == "ubuntu" ]]
 then
@@ -73,11 +74,3 @@ source $HOME/.zshrc
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 python $HOME/.vim/bundle/YouCompleteMe/install.py
-
-# final config
-if [ ! -d $HOME/.config/ptpython ] 
-then 
-    mkdir $HOME/.config/ptpython 
-fi
-./update.sh
-exec zsh
