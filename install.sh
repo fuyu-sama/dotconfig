@@ -52,7 +52,9 @@ pip install ptpython flake8 yapf thefuck
 
 # autojump
 git clone git://github.com/wting/autojump.git Downloads/autojump
-Downloads/autojump/install.py
+cd Downloads/autojump
+./install.py
+cd -
 
 # vim
 git clone https://github.com/vim/vim.git Downloads/vim
