@@ -9,7 +9,7 @@ dist=`awk -F= '$1=="ID" { print $2 ;}' /etc/os-release`
 if [[ $dist == "debian" ]] || [[ $dist == "ubuntu" ]]
 then
     sudo apt update
-    sudo apt install zsh tmux make cmake neofetch \
+    sudo apt install -y zsh tmux make cmake neofetch \
         build-essential libssl-dev zlib1g-dev libbz2-dev \
         libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev \
         xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
@@ -18,7 +18,7 @@ then
         lua5.1 liblua5.1-dev libperl-dev
 elif [[ $dist == '"opensuse-leap"' ]] 
 then
-    sudo zypper install zsh make cmake gcc-c++ gcc9 gcc9-c++ neofetch \
+    sudo zypper install -y zsh make cmake gcc-c++ gcc9 gcc9-c++ neofetch \
         automake bzip2 libbz2-devel xz xz-devel openssl-devel ncurses-devel \
         readline-devel zlib-devel tk-devel libffi-devel sqlite3-devel libevent-devel
     export CC=/usr/bin/gcc-9
@@ -29,6 +29,11 @@ then
     ./configure
     make && sudo make install
     cd -
+elif [[ $dist == '"opensuse-tumbleweed"' ]]
+then
+    sudo zypper install -y zsh make cmake neofetch tmux \
+        automake bzip2 libbz2-devel xz xz-devel openssl-devel ncurses-devel \
+        readline-devel zlib-devel tk-devel libffi-devel sqlite3-devel libevent-devel
 elif [[ $dist == "arch" ]]
 then
     sudo pacman -Sy --needed zsh tmux make cmake neofetch \
