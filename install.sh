@@ -9,17 +9,16 @@ dist=`awk -F= '$1=="ID" { print $2 ;}' /etc/os-release`
 if [[ $dist == "debian" ]] || [[ $dist == "ubuntu" ]]
 then
     sudo apt update
-    sudo apt install -y zsh tmux make cmake neofetch \
-        build-essential libssl-dev zlib1g-dev libbz2-dev \
-        libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev \
-        xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
-        libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev \
-        libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev ruby-dev \
-        lua5.1 liblua5.1-dev libperl-dev
+    sudo apt install -y zsh tmux make cmake neofetch htop ncdu build-essential \
+        libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget \
+        curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
+        libffi-dev liblzma-dev libncurses5-dev libgnome2-dev libgnomeui-dev \
+        libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev \
+        libxpm-dev libxt-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev
 elif [[ $dist == '"opensuse-leap"' ]] 
 then
-    sudo zypper install -y zsh make cmake gcc-c++ gcc9 gcc9-c++ neofetch \
-        automake bzip2 libbz2-devel xz xz-devel openssl-devel ncurses-devel \
+    sudo zypper install -y zsh make cmake gcc-c++ gcc9 gcc9-c++ neofetch htop \
+        ncdu automake bzip2 libbz2-devel xz xz-devel openssl-devel ncurses-devel \
         readline-devel zlib-devel tk-devel libffi-devel sqlite3-devel libevent-devel
     export CC=/usr/bin/gcc-9
     export CXX=/usr/bin/g++-9 
@@ -31,13 +30,13 @@ then
     cd -
 elif [[ $dist == '"opensuse-tumbleweed"' ]]
 then
-    sudo zypper install -y zsh make cmake neofetch tmux \
+    sudo zypper install -y zsh make cmake neofetch tmux htop ncdu\
         automake bzip2 libbz2-devel xz xz-devel openssl-devel ncurses-devel \
         readline-devel zlib-devel tk-devel libffi-devel sqlite3-devel libevent-devel
 elif [[ $dist == "arch" ]]
 then
-    sudo pacman -Sy --needed zsh tmux make cmake neofetch \
-        base-devel openssl zlib xz
+    sudo pacman -Sy --needed zsh tmux make cmake neofetch htop ncdu base-devel \
+        openssl zlib xz
 fi
 
 # ohmyzsh
