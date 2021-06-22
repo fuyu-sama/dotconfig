@@ -12,9 +12,9 @@ then
     sudo apt install -y zsh tmux make cmake neofetch htop ncdu build-essential \
         libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget \
         curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
-        libffi-dev liblzma-dev libncurses5-dev libgnome2-dev libgnomeui-dev \
-        libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev \
-        libxpm-dev libxt-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev
+        libffi-dev liblzma-dev libncurses5-dev libgtk2.0-dev libatk1.0-dev \
+        libcairo2-dev libx11-dev libxpm-dev libxt-dev ruby-dev lua5.1 \
+        liblua5.1-dev libperl-dev
 elif [[ $dist == '"opensuse-leap"' ]] 
 then
     sudo zypper install -y zsh make cmake gcc-c++ gcc9 gcc9-c++ neofetch htop \
