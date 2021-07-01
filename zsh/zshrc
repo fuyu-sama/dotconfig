@@ -103,6 +103,12 @@ alias free="free -h"
 alias less="less -S"
 alias venvactivate="source venv/bin/activate"
 
+# hjkl to arrow
+bindkey '^[h' vi-backward-char
+bindkey '^[j' down-line-or-search
+bindkey '^[k' up-line-or-search
+bindkey '^[l' vi-forward-char
+
 # source folder
 export PATH=$HOME/.local/source:$PATH
 export PATH=$HOME/.local/prefix/vim/8.2/bin:$PATH
