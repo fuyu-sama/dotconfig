@@ -30,7 +30,7 @@ then
     cd -
 elif [[ $dist == '"opensuse-tumbleweed"' ]]
 then
-    sudo zypper install -y zsh make cmake neofetch tmux htop ncdu\
+    sudo zypper install -y zsh make cmake neofetch tmux htop ncdu gcc gcc-c++ \
         automake bzip2 libbz2-devel xz xz-devel openssl-devel ncurses-devel \
         readline-devel zlib-devel tk-devel libffi-devel sqlite3-devel libevent-devel
 elif [[ $dist == "arch" ]]
