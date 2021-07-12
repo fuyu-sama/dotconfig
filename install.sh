@@ -61,6 +61,7 @@ cd Downloads/autojump
 cd -
 
 # vim
+export LDFLAGS="-rdynamic"
 git clone https://github.com/vim/vim.git Downloads/vim
 cd Downloads/vim
 ./configure --with-features=huge \
