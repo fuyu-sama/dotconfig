@@ -36,7 +36,7 @@ then
 elif [[ $dist == "arch" ]]
 then
     sudo pacman -Sy --needed zsh tmux make cmake neofetch htop ncdu base-devel \
-        openssl zlib xz
+        openssl zlib xz nnn
 fi
 
 # ohmyzsh

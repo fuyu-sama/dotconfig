@@ -133,3 +133,8 @@ eval $(thefuck --alias)
 eval $(thefuck --alias FUCK)
 eval $(thefuck --alias cao)
 eval $(thefuck --alias CAO)
+
+# nnn
+export VISUAL=$HOME/.ewrap
+export EDITOR=vim
+alias nnn="nnn -de"
