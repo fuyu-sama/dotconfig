@@ -135,6 +135,6 @@ eval $(thefuck --alias cao)
 eval $(thefuck --alias CAO)
 
 # nnn
-export VISUAL=$HOME/.ewrap
+export VISUAL=vim
 export EDITOR=vim
 alias nnn="nnn -de"
