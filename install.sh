@@ -55,7 +55,7 @@ pyenv global 3.8.10
 pip install ptpython flake8 yapf thefuck
 
 # autojump
-git clone git://github.com/wting/autojump.git Downloads/autojump
+git clone https://github.com/wting/autojump.git Downloads/autojump
 cd Downloads/autojump
 ./install.py
 cd -
@@ -77,6 +77,7 @@ make && make install
 cd -
 
 git clone https://github.com/junegunn/vim-plug.git Downloads/vim-plug
+[ ! -d $HOME/.vim/autoload ] && mkdir $HOME/.vim/autoload
 cp Downloads/vim-plug/plug.vim $HOME/.vim/autoload
 vim +PlugInstall +qall
 python $HOME/.vim/bundle/YouCompleteMe/install.py
