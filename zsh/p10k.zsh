@@ -33,13 +33,14 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    os_icon                 # os identifier
+    #os_icon                 # os identifier
     context
     dir                     # current directory
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
     time                    # current time
+    command_execution_time  # duration of the last command
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
@@ -71,11 +72,10 @@
     # terraform_version     # terraform version (https://www.terraform.io)
     load                  # CPU load
     ram                   # free RAM
-    command_execution_time  # duration of the last command
-    status                  # exit code of the last command
     # =========================[ Line #3 ]=========================
     newline                 # \n
-    prompt_char           # prompt symbol
+    #prompt_char           # prompt symbol
+    status                  # exit code of the last command
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
