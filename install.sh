@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ ! -d Downloads ] 
+if [ ! -d Downloads ]
 then
     mkdir Downloads
 fi
@@ -15,13 +15,13 @@ then
         libffi-dev liblzma-dev libncurses5-dev libgtk2.0-dev libatk1.0-dev \
         libcairo2-dev libx11-dev libxpm-dev libxt-dev ruby-dev lua5.1 \
         liblua5.1-dev libperl-dev
-elif [[ $dist == '"opensuse-leap"' ]] 
+elif [[ $dist == '"opensuse-leap"' ]]
 then
     sudo zypper install -y zsh make cmake gcc-c++ gcc9 gcc9-c++ neofetch htop \
         ncdu automake bzip2 libbz2-devel xz xz-devel openssl-devel ncurses-devel \
         readline-devel zlib-devel tk-devel libffi-devel sqlite3-devel libevent-devel
     export CC=/usr/bin/gcc-9
-    export CXX=/usr/bin/g++-9 
+    export CXX=/usr/bin/g++-9
     # tmux
     git clone https://github.com/tmux/tmux.git Downloads/tmux
     cd Downloads/tmux
