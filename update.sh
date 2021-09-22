@@ -30,4 +30,5 @@ ln -f -s $DIR/vim/UltiSnips $HOME/.vim/UltiSnips
 # zsh
 ln -f $DIR/zsh/zshrc $HOME/.zshrc
 ln -f $DIR/zsh/zprofile $HOME/.zprofile
+ln -f $DIR/zsh/p10k.zsh $HOME/.p10k.zsh
 ln -f $DIR/zsh/myys.zsh-theme $HOME/.oh-my-zsh/custom/themes/myys.zsh-theme

@@ -36,7 +36,7 @@ then
 elif [[ $dist == "arch" ]]
 then
     sudo pacman -Sy --needed zsh tmux make cmake neofetch htop ncdu base-devel \
-        openssl zlib xz nnn
+        openssl zlib xz nnn python-pip
 fi
 
 # ohmyzsh
@@ -44,6 +44,7 @@ touch $HOME/.user_path
 sh zsh/install-ohmyzsh.sh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ./update.sh
 
 # pyenv
@@ -52,7 +53,9 @@ source $HOME/.zprofile
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
 pyenv install 3.8.10
 pyenv global 3.8.10
-pip install ptpython flake8 yapf thefuck
+pip install \
+    ptpython flake8 yapf thefuck \
+    powerline-status powerline-gitstatus
 
 # autojump
 git clone https://github.com/wting/autojump.git Downloads/autojump

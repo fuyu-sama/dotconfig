@@ -32,8 +32,6 @@ nnoremap <space> za
 " vim-plug
 call plug#begin()
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 
@@ -45,6 +43,7 @@ Plug 'honza/vim-snippets'
 
 Plug 'sillybun/vim-repl'
 Plug 'moll/vim-bbye'
+Plug 'preservim/nerdcommenter'
 
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
@@ -55,12 +54,14 @@ Plug 'Vimjas/vim-python-pep8-indent'
 
 call plug#end()
 
-" AirlineTheme
-let g:airline_theme='sol'
+" Powerline
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 
-" vim-airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+set laststatus=2
+set showtabline=2
+set noshowmode 
 
 " Autoformat
 " au BufWrite * :Autoformat
