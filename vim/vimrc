@@ -17,7 +17,7 @@ autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
 
 " Buffer move
-set wildmenu wildmode=full 
+set wildmenu wildmode=full
 set wildchar=<Tab> wildcharm=<C-Z>
 map <F10> <C-^>
 
