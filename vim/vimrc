@@ -29,41 +29,31 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
-" Vundle and plugin
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" vim-plug
+call plug#begin()
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Chiel92/vim-autoformat'
+Plug 'jiangmiao/auto-pairs'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sillybun/vim-repl'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'dense-analysis/ale'
+Plug 'skywind3000/vim-terminal-help'
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'airblade/vim-gitgutter'
+Plug 'moll/vim-bbye'
+Plug 'Vimjas/vim-python-pep8-indent'
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-Plugin 'preservim/nerdcommenter'
-Plugin 'preservim/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'sillybun/vim-repl'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'dense-analysis/ale'
-Plugin 'skywind3000/vim-terminal-help'
-Plugin 'skywind3000/asynctasks.vim'
-Plugin 'skywind3000/asyncrun.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'moll/vim-bbye'
-Plugin 'Vimjas/vim-python-pep8-indent'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 " AirlineTheme
 let g:airline_theme='sol'

@@ -76,6 +76,7 @@ cd Downloads/vim
 make && make install
 cd -
 
-git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+git clone https://github.com/junegunn/vim-plug.git Downloads/vim-plug
+cp Downloads/vim-plug/plug.vim $HOME/.vim/autoload
+vim +PlugInstall +qall
 python $HOME/.vim/bundle/YouCompleteMe/install.py
