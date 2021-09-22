@@ -7,7 +7,7 @@ git pull origin
 # check whether dirs exist
 DIRS[0]=$HOME/.config
 DIRS[1]=$HOME/.config/ptpython
-DIRS[2]=$HOME/.vim 
+DIRS[2]=$HOME/.vim
 for i in ${DIRS[@]}
 do
     if [ ! -d $i ] 
