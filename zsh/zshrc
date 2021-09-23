@@ -143,8 +143,8 @@ eval $(thefuck --alias cao)
 eval $(thefuck --alias CAO)
 
 # nnn
-export VISUAL=vim
-export EDITOR=vim
+export VISUAL=$HOME/.ewrap
+export EDITOR=$HOME/.ewrap
 alias nnn="nnn -de"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
