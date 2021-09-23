@@ -54,8 +54,7 @@ export PYTHON_CONFIGURE_OPTS="--enable-shared"
 pyenv install 3.8.10
 pyenv global 3.8.10
 pip install \
-    ptpython flake8 yapf thefuck \
-    powerline-status powerline-gitstatus
+    ptpython flake8 yapf thefuck
 
 # autojump
 git clone https://github.com/wting/autojump.git Downloads/autojump
