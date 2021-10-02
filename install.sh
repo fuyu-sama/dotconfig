@@ -51,8 +51,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 source $HOME/.zprofile
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
-pyenv install 3.8.10
-pyenv global 3.8.10
+pyenv install 3.9.5
+pyenv global 3.9.5
 pip install \
     ptpython flake8 yapf thefuck
 
