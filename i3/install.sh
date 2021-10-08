@@ -4,7 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
 sudo pacman -S \
     i3 mpd python-pywal calc pango feh rofi
-yay -S polybar i3lock-fancy-git picom-ibhagwan-git 
+yay -S polybar i3lock-fancy-git picom-ibhagwan-git autotiling 
 
 ln -f $DIR/config $HOME/.config/i3
 
