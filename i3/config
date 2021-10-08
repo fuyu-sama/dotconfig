@@ -194,6 +194,7 @@ bindsym mod1+space exec --no-startup-id rofi -show drun
 exec_always --no-startup-id feh --bg-scale /mnt/Users/U-3mi_83494143_p0.jpg
 exec_always --no-startup-id "$HOME/.config/polybar/grayblocks/launch.sh"
 exec_always --no-startup-id autotiling
+exec --no-startup-id /usr/lib/pam_kwallet_init
 exec --no-startup-id picom &
 exec --no-startup-id fcitx5 &
 
