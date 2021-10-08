@@ -185,7 +185,6 @@ bar {
 
 font pango:"Microroft YaHei" 12
 
-smart_gaps on
 gaps inner 10
 gaps outer 0
 
