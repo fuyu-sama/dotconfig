@@ -198,7 +198,7 @@ exec --no-startup-id picom &
 exec --no-startup-id fcitx5 &
 
 # i3lock
-bindsym $mod+F12 exec i3lock-fancy
+bindsym $mod+F12 exec "betterlockscreen -l"
 
 # hide title bar
 for_window [class=".*"] border pixel 5
