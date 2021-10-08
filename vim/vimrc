@@ -15,6 +15,7 @@ highlight Visual cterm=bold ctermbg=darkgrey
 highlight SignColumn ctermbg=darkgrey
 autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 " Buffer move
 set wildmenu wildmode=full
