@@ -82,4 +82,4 @@ git clone https://github.com/junegunn/vim-plug.git Downloads/vim-plug
 [ ! -d $HOME/.vim/autoload ] && mkdir $HOME/.vim/autoload
 cp Downloads/vim-plug/plug.vim $HOME/.vim/autoload
 vim +PlugInstall +qall
-python $HOME/.vim/bundle/YouCompleteMe/install.py
+python $HOME/.vim/plugged/YouCompleteMe/install.py
