@@ -179,6 +179,14 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        font pango:"Code New Roman Nerd Fonts" 10
+        position bottom
+        colors {
+                background #FEFEFA
+                # colorclass       <border> <background> <text>
+                focused_workspace  #00acc1  #FEFEFA     #0a0a0a
+                inactive_workspace #FEFEFA  #FEFEFA     #0a0a0a
+        }
 }
 
 # Default settings end
@@ -190,7 +198,7 @@ gaps outer 0
 
 # auto start
 bindsym mod1+space exec --no-startup-id rofi -show drun
-exec_always --no-startup-id feh --bg-scale /mnt/Users/U-3mi_83494143_p0.jpg
+exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper.jpg
 exec_always --no-startup-id "$HOME/.config/polybar/grayblocks/launch.sh"
 exec_always --no-startup-id autotiling
 exec --no-startup-id /usr/lib/pam_kwallet_init
