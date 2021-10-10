@@ -8,5 +8,9 @@ yay -S polybar betterlockscreen picom-ibhagwan-git autotiling
 
 ln -f $DIR/config $HOME/.config/i3
 
+[ -d $HOME/.config/i3status ] && rm -rf $HOME/.config/i3status
+mkdir $HOME/.config/i3status
+ln -f $DIR/i3status.config $HOME/.config/i3status/config
+
 [ -d $HOME/.config/polybar ] && rm -rf $HOME/.config/polybar
 ln -f -s $DIR/polybar $HOME/.config/polybar
