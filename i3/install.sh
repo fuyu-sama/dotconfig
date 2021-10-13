@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
-
 sudo pacman -S \
     i3 mpd python-pywal calc pango feh rofi nm-connection-editor
 yay -S polybar betterlockscreen picom-ibhagwan-git autotiling 
 
-ln -f $DIR/config $HOME/.config/i3
-
-[ -d $HOME/.config/i3status ] && rm -rf $HOME/.config/i3status
-mkdir $HOME/.config/i3status
-ln -f $DIR/i3status.config $HOME/.config/i3status/config
-
-[ -d $HOME/.config/polybar ] && rm -rf $HOME/.config/polybar
-ln -f -s $DIR/polybar $HOME/.config/polybar
+./update.sh
