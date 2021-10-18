@@ -16,6 +16,7 @@ highlight SignColumn ctermbg=darkgrey
 autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+inoremap jj <Esc>
 
 " Buffer move
 set wildmenu wildmode=full

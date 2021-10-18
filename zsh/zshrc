@@ -115,6 +115,7 @@ alias venvactivate="source venv/bin/activate"
 
 # ZVM
 ZVM_CURSOR_STYLE_ENABLED=false
+ZVM_VI_ESCAPE_BINDKEY=jj
 
 # source folder
 export PATH=$HOME/.local/source:$PATH
