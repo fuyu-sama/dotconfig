@@ -76,7 +76,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git)
+plugins+=(zsh-syntax-highlighting)
+plugins+=(zsh-autosuggestions)
+plugins+=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,11 +113,8 @@ alias free="free -h"
 alias less="less -S"
 alias venvactivate="source venv/bin/activate"
 
-# hjkl to arrow
-bindkey '^[h' vi-backward-char
-bindkey '^[j' down-line-or-search
-bindkey '^[k' up-line-or-search
-bindkey '^[l' vi-forward-char
+# ZVM
+ZVM_CURSOR_STYLE_ENABLED=false
 
 # source folder
 export PATH=$HOME/.local/source:$PATH
@@ -125,7 +125,9 @@ source $HOME/.user_path     # add user specific config here
 # zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bold"
 export TERMINFO=/usr/share/terminfo
-bindkey '^[i' autosuggest-accept
+function zvm_after_init() {
+  zvm_bindkey viins '^[i' autosuggest-accept
+}
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
