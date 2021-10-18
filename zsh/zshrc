@@ -9,6 +9,12 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export fpath=($HOME/.local/prefix/zsh/5.8/share/zsh/5.8/functions $fpath)
 
+# ZVM
+function zvm_config() {
+    ZVM_CURSOR_STYLE_ENABLED=false
+    ZVM_VI_ESCAPE_BINDKEY=jj
+}
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -113,9 +119,6 @@ alias free="free -h"
 alias less="less -S"
 alias venvactivate="source venv/bin/activate"
 
-# ZVM
-ZVM_CURSOR_STYLE_ENABLED=false
-ZVM_VI_ESCAPE_BINDKEY=jj
 
 # source folder
 export PATH=$HOME/.local/source:$PATH
