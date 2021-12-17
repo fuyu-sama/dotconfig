@@ -101,7 +101,8 @@ let g:repl_exit_commands = {
             \   'zsh': 'exit',
             \   'default': 'exit'
             \   }
-let g:repl_position = 3
+" let g:repl_position = 3 " for right
+let g:repl_position = 0 " for bottom
 let g:repl_console_name = 'REPL'
 let g:repl_cursor_down = 1
 let g:repl_python_auto_send_unfinish_line = 0
