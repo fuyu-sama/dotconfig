@@ -50,6 +50,8 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'dense-analysis/ale'
 Plug 'Vimjas/vim-python-pep8-indent'
 
+Plug 'roxma/vim-tmux-clipboard'
+
 call plug#end()
 
 " Powerline
