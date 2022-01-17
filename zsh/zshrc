@@ -118,7 +118,7 @@ export LC_ALL=en_US.UTF-8
 alias free="free -h"
 alias less="less -S"
 alias venvactivate="source venv/bin/activate"
-
+alias git-push-all="git push github && git push peng-lab"
 
 # source folder
 export PATH=$HOME/.local/source:$PATH
