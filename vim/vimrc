@@ -49,6 +49,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'dense-analysis/ale'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
 Plug 'roxma/vim-tmux-clipboard'
 
@@ -57,7 +58,7 @@ call plug#end()
 " Powerline
 set laststatus=2
 set showtabline=2
-set noshowmode 
+set noshowmode
 
 " Autoformat
 " au BufWrite * :Autoformat
@@ -118,3 +119,10 @@ let g:UltiSnipsExpandTrigger="<F1>"
 let g:ale_r_lintr_options = "with_defaults(camel_case_linter = NULL)"
 let g:ale_r_lintr_options = "with_defaults(object_name_linter = NULL)"
 let g:ale_python_flake8_options = '--config=$HOME/.config/flake8'
+
+" LeaderF
+let g:Lf_WindowHeight = 0.30
+noremap <leader>f :LeaderfSelf<cr>
+noremap <leader>ft :LeaderfBufTag<cr>
+noremap <leader>ff :LeaderfFile<cr>
+noremap <leader>fu :LeaderfFunction<cr>
