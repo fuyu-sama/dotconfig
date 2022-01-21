@@ -123,6 +123,7 @@ let g:ale_python_flake8_options = '--config=$HOME/.config/flake8'
 " LeaderF
 let g:Lf_WindowHeight = 0.30
 noremap <leader>f :LeaderfSelf<cr>
+noremap <leader>fl :LeaderfLine<cr>
 noremap <leader>ft :LeaderfBufTag<cr>
 noremap <leader>ff :LeaderfFile<cr>
 noremap <leader>fu :LeaderfFunction<cr>
