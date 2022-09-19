@@ -202,7 +202,7 @@ bindsym mod1+space exec --no-startup-id rofi -show drun
 exec_always --no-startup-id feh --bg-scale $HOME/.wallpaper.jpg
 exec_always --no-startup-id "$HOME/.config/polybar/grayblocks/launch.sh"
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id xset s 1200
+exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset dpms 0 0 0
 exec --no-startup-id /usr/lib/pam_kwallet_init
 exec --no-startup-id picom &
