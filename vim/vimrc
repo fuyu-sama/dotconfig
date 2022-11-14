@@ -119,6 +119,7 @@ let g:UltiSnipsExpandTrigger="<F1>"
 let g:ale_r_lintr_options = "with_defaults(camel_case_linter = NULL)"
 let g:ale_r_lintr_options = "with_defaults(object_name_linter = NULL)"
 let g:ale_python_flake8_options = '--config=$HOME/.config/flake8'
+let b:ale_linters = {'python': ['flake8']}
 
 " LeaderF
 let g:Lf_WindowHeight = 0.30
