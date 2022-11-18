@@ -17,12 +17,11 @@ autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 inoremap jj <Esc>
-nnoremap <silent><F8> :ter<cr>
+nnoremap <silent><F10> :ter<cr>
 
 " Buffer move
 set wildmenu wildmode=full
 set wildchar=<Tab> wildcharm=<C-Z>
-map <F10> <C-^>
 
 " Enable folding
 set foldmethod=indent
