@@ -112,6 +112,17 @@ let g:repl_python_auto_send_unfinish_line = 0
 let g:repl_python_automerge = 1
 let g:repl_python_auto_import = 0
 
+" change repl position
+:function Repl_change_position()
+:   if g:repl_position == 0
+:       let g:repl_position = 3
+:   elseif g:repl_position == 3
+:       let g:repl_position = 0
+:   endif
+:endfunction
+:command ReplChangePosition :call Repl_change_position()
+noremap <silent><F12> :ReplChangePosition<cr>
+
 " ultisnips
 let g:UltiSnipsExpandTrigger="<F1>"
 
