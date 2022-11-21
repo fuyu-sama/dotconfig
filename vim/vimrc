@@ -140,3 +140,4 @@ noremap <leader>fu :LeaderfFunction<cr>
 
 " undotree
 nnoremap <F8> :UndotreeToggle<CR>
+let g:loaded_undotree = 2
