@@ -33,25 +33,22 @@ call plug#begin()
 
 Plug 'airblade/vim-gitgutter'
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-
 Plug 'Chiel92/vim-autoformat'
 Plug 'jiangmiao/auto-pairs'
-
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 Plug 'sillybun/vim-repl'
 Plug 'preservim/nerdcommenter'
-
-Plug 'skywind3000/asynctasks.vim'
-Plug 'skywind3000/asyncrun.vim'
-
 Plug 'ycm-core/YouCompleteMe'
 Plug 'dense-analysis/ale'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'mbbill/undotree'
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
 
@@ -104,8 +101,7 @@ let g:repl_exit_commands = {
             \   'zsh': 'exit',
             \   'default': 'exit'
             \   }
-" let g:repl_position = 3 " for right
-let g:repl_position = 0 " for bottom
+let g:repl_position = 0
 let g:repl_console_name = 'REPL'
 let g:repl_cursor_down = 1
 let g:repl_python_auto_send_unfinish_line = 0
@@ -141,3 +137,6 @@ noremap <leader>fl :LeaderfLine<cr>
 noremap <leader>ft :LeaderfBufTag<cr>
 noremap <leader>ff :LeaderfFile<cr>
 noremap <leader>fu :LeaderfFunction<cr>
+
+" undotree
+nnoremap <F8> :UndotreeToggle<CR>
