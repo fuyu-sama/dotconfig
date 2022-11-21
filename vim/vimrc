@@ -17,7 +17,7 @@ autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 inoremap jj <Esc>
-noremap <silent><F10> :ter<cr>
+nnoremap <silent><F10> :ter<cr>
 
 " Buffer move
 set wildmenu wildmode=full
@@ -59,7 +59,7 @@ set noshowmode
 
 " Autoformat
 " au BufWrite * :Autoformat
-noremap <F3> :Autoformat<CR>
+nnoremap <F3> :Autoformat<CR>
 autocmd FileType vim,tex let b:autoformat_autoindent=0
 let g:formatter_yapf_style = 'pep8'
 let r_indent_align_args = 0
@@ -75,8 +75,8 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:asyncrun_open = 6
 let g:asynctasks_term_pos = 'quickfix'
 let g:asynctasks_term_reuse = 1
-noremap <silent><F5> :AsyncTask file-run<cr>
-noremap <silent><F9> :AsyncTask file-build<cr>
+nnoremap <silent><F5> :AsyncTask file-run<cr>
+nnoremap <silent><F9> :AsyncTask file-build<cr>
 
 " vim-repl
 nnoremap <leader>r :REPLToggle<Cr>
@@ -139,5 +139,5 @@ nnoremap <leader>ff :LeaderfFile<cr>
 nnoremap <leader>fu :LeaderfFunction<cr>
 
 " undotree
-noremap <F8> :UndotreeToggle<CR>
+nnoremap <F8> :UndotreeToggle<CR>
 let g:loaded_undotree = 2
