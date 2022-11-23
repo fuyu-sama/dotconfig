@@ -123,7 +123,6 @@ source $HOME/.user_path     # add user specific config here
 # zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bold"
 export TERMINFO=/usr/share/terminfo
-bindkey '^[i' autosuggest-accept
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
