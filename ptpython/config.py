@@ -89,7 +89,7 @@ def configure(repl):
 
     # Enable auto suggestions. (Pressing right arrow will complete the input,
     # based on the history.)
-    repl.enable_auto_suggest = False
+    repl.enable_auto_suggest = True
 
     # Enable open-in-editor. Pressing C-x C-e in emacs mode or 'v' in
     # Vi navigation mode will open the input in the current editor.
@@ -100,7 +100,7 @@ def configure(repl):
     repl.enable_system_bindings = True
 
     # Ask for confirmation on exit.
-    repl.confirm_exit = True
+    repl.confirm_exit = False
 
     # Enable input validation. (Don't try to execute when the input contains
     # syntax errors.)
@@ -154,12 +154,10 @@ def configure(repl):
 
     # Typing 'jj' in Vi Insert mode, should send escape. (Go back to navigation
     # mode.)
-    """
     @repl.add_key_binding("j", "j", filter=ViInsertMode())
     def _(event):
         " Map 'jj' to Escape. "
         event.cli.key_processor.feed(KeyPress(Keys("escape")))
-    """
 
     # Custom key binding for some simple autocorrection while typing.
     """
