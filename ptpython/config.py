@@ -53,7 +53,7 @@ def configure(repl):
     repl.highlight_matching_parenthesis = True
 
     # Line wrapping. (Instead of horizontal scrolling.)
-    repl.wrap_lines = False
+    repl.wrap_lines = True
 
     # Mouse support.
     repl.enable_mouse_support = False
