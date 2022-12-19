@@ -47,8 +47,10 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 source $HOME/.zprofile
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
-pyenv install 3.9.5
-pyenv global 3.9.5
+INSTALL_PY_VERSION_SHORT=3.10
+INSTALL_PY_VERSION=${INSTALL_PY_VERSION_SHORT}.9
+pyenv install ${INSTALL_PY_VERSION}
+pyenv global ${INSTALL_PY_VERSION}
 pip install \
     ptpython flake8 yapf thefuck
 
@@ -67,11 +69,11 @@ if ! [[ $dist == "arch" ]]; then
         --enable-multibyte \
         --enable-rubyinterp=yes \
         --enable-python3interp=yes \
-        --with-python-config-dir=$HOME/.pyenv/versions/3.8.10/lib/python3.8/config-3.8-x86_64-linux-gnu \
+        --with-python-config-dir=$HOME/.pyenv/versions/${INSTALL_PY_VERSION}/lib/python${INSTALL_PY_VERSION_SHORT}/config-${INSTALL_PY_VERSION_SHORT}-x86_64-linux-gnu \
         --enable-perlinterp=yes \
         --enable-luainterp=yes \
         --enable-cscope \
-        --prefix=$HOME/.local/prefix/vim/8.2
+        --prefix=$HOME/.local/prefix/vim/9.0
     make && make install
     cd -
 fi
