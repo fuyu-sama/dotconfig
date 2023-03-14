@@ -1,14 +1,5 @@
-let enablerc = getenv("VIM_ENABLERC")
-if enablerc is v:null
-    let enablerc = 1
-endif
-
-let enableplug = getenv("VIM_ENABLEPLUG")
-if enableplug is v:null
-    let enableplug = 1
-endif
-
-if enablerc != 0
+vim9script
+if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
     syntax on
     set nu
     set ruler
@@ -24,7 +15,7 @@ if enablerc != 0
     set backspace=indent,eol,start
     set wildmenu wildmode=full
     set wildchar=<Tab> wildcharm=<C-Z>
-    let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+    g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
     highlight Visual cterm=bold ctermbg=darkgrey
     highlight SignColumn ctermbg=darkgrey
@@ -35,12 +26,12 @@ if enablerc != 0
     inoremap jj <Esc>
     nnoremap <silent><F10> :ter<cr>
 
-    " Enable folding
+    # Enable folding
     set foldmethod=indent
     set foldlevel=99
     nnoremap <space> za
 
-    if enableplug != 0
+    if $VIM_ENABLEPLUG != "0" || $VIM_ENABLEPLUG == ""
         call plug#begin()
 
         Plug 'airblade/vim-gitgutter'
@@ -64,93 +55,93 @@ if enablerc != 0
 
         call plug#end()
 
-        " Powerline
+        # Powerline
         set laststatus=2
         set showtabline=2
         set noshowmode
 
-        " Autoformat
-        " au BufWrite * :Autoformat
+        # Autoformat
+        # au BufWrite * :Autoformat
         nnoremap <F3> :Autoformat<CR>
-        autocmd FileType vim,tex let b:autoformat_autoindent=0
-        let g:formatter_yapf_style = 'pep8'
-        let r_indent_align_args = 0
-        let g:formatdef_astyle_c = '"astyle --mode=c --style=google"'
-        let g:formatters_c = ['astyle_c']
-        let g:formatters_cpp = ['astyle_c']
+        autocmd FileType vim,tex b:autoformat_autoindent=0
+        g:formatter_yapf_style = 'pep8'
+        g:r_indent_align_args = 0
+        g:formatdef_astyle_c = '"astyle --mode=c --style=google"'
+        g:formatters_c = ['astyle_c']
+        g:formatters_cpp = ['astyle_c']
 
-        " YCM
-        let g:ycm_autoclose_preview_window_after_insertion = 1
-        let g:ycm_autoclose_preview_window_after_completion = 1
+        # YCM
+        g:ycm_autoclose_preview_window_after_insertion = 1
+        g:ycm_autoclose_preview_window_after_completion = 1
 
-        " asyncrun.vim
-        let g:asyncrun_open = 6
-        let g:asynctasks_term_pos = 'quickfix'
-        let g:asynctasks_term_reuse = 1
+        # asyncrun.vim
+        g:asyncrun_open = 6
+        g:asynctasks_term_pos = 'quickfix'
+        g:asynctasks_term_reuse = 1
         nnoremap <silent><F5> :AsyncTask file-run<cr>
         nnoremap <silent><F9> :AsyncTask file-build<cr>
 
-        " vim-repl
+        # vim-repl
         nnoremap <leader>r :REPLToggle<Cr>
         nnoremap <leader>e :REPLSendSession<Cr>
-        let g:repl_python_pre_launch_command = 'source venv/bin/activate'
-        let g:repl_program = {
-                    \   'python': 'ptpython',
-                    \   'default': 'zsh',
-                    \   'r': 'R --no-save',
-                    \   'lua': 'lua'
-                    \   }
-        let g:repl_predefine_python = {
-                    \   'numpy': 'import numpy as np',
-                    \   'pandas': 'import pandas as pd',
-                    \   'matplotlib': 'import matplotlib.pyplot as plt'
-                    \   }
-        let g:repl_exit_commands = {
-                    \   'ptpython': 'exit()',
-                    \   'radian': 'q()',
-                    \   'R': 'q()',
-                    \   'bash': 'exit',
-                    \   'zsh': 'exit',
-                    \   'default': 'exit'
-                    \   }
-        let g:repl_position = 0
-        let g:repl_console_name = 'REPL'
-        let g:repl_cursor_down = 1
-        let g:repl_python_auto_send_unfinish_line = 0
-        let g:repl_python_automerge = 1
-        let g:repl_python_auto_import = 0
+        g:repl_python_pre_launch_command = 'source venv/bin/activate'
+        g:repl_program = {
+            'python': 'ptpython',
+            'default': 'zsh',
+            'r': 'R --no-save',
+            'lua': 'lua'
+            }
+        g:repl_predefine_python = {
+            'numpy': 'import numpy as np',
+            'pandas': 'import pandas as pd',
+            'matplotlib': 'import matplotlib.pyplot as plt'
+            }
+        g:repl_exit_commands = {
+            'ptpython': 'exit()',
+            'radian': 'q()',
+            'R': 'q()',
+            'bash': 'exit',
+            'zsh': 'exit',
+            'default': 'exit'
+            }
+        g:repl_position = 0
+        g:repl_console_name = 'REPL'
+        g:repl_cursor_down = 1
+        g:repl_python_auto_send_unfinish_line = 0
+        g:repl_python_automerge = 1
+        g:repl_python_auto_import = 0
 
-        " change repl position
-        function REPL_change_position()
+        # change repl position
+        def REPL_change_position()
            if g:repl_position == 0
-               let g:repl_position = 3
+               var g:repl_position = 3
                echom "Present REPL position: right"
            elseif g:repl_position == 3
-               let g:repl_position = 0
+               var g:repl_position = 0
                echom "Present REPL position: bottom"
            endif
-        endfunction
+        enddef
         command REPLChangePosition :call REPL_change_position()
         noremap <silent><F12> :REPLChangePosition<cr>
 
-        " ultisnips
-        let g:UltiSnipsExpandTrigger="<F1>"
+        # ultisnips
+        g:UltiSnipsExpandTrigger = "<F1>"
 
-        " ALE
-        let g:ale_r_lintr_options = "with_defaults(camel_case_linter = NULL)"
-        let g:ale_r_lintr_options = "with_defaults(object_name_linter = NULL)"
-        let g:ale_python_flake8_options = '--config=$HOME/.config/flake8'
-        let g:ale_linters = {'python': ['flake8']}
+        # ALE
+        g:ale_r_lintr_options = "with_defaults(camel_case_linter = NULL)"
+        g:ale_r_lintr_options = "with_defaults(object_name_linter = NULL)"
+        g:ale_python_flake8_options = '--config=$HOME/.config/flake8'
+        g:ale_linters = {'python': ['flake8']}
 
-        " LeaderF
-        let g:Lf_WindowHeight = 0.30
+        # LeaderF
+        g:Lf_WindowHeight = 0.30
         nnoremap <leader>f :LeaderfSelf<cr>
         nnoremap <leader>fl :LeaderfLine<cr>
         nnoremap <leader>ft :LeaderfBufTag<cr>
         nnoremap <leader>ff :LeaderfFile<cr>
         nnoremap <leader>fu :LeaderfFunction<cr>
 
-        " undotree
+        # undotree
         nnoremap <F8> :UndotreeToggle<CR>
 
     endif
