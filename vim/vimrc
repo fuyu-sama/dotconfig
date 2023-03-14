@@ -1,142 +1,157 @@
-syntax on
-set nu
-set ruler
-set smartindent
-set splitbelow
-set hidden
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set encoding=UTF-8
-set background=dark
-set signcolumn=number
-set backspace=indent,eol,start
-highlight Visual cterm=bold ctermbg=darkgrey
-highlight SignColumn ctermbg=darkgrey
-autocmd InsertLeave * se nocul
-autocmd InsertEnter * se cul
-let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-inoremap jj <Esc>
-nnoremap <silent><F10> :ter<cr>
+let enablerc = getenv("VIM_ENABLERC")
+if enablerc is v:null
+    let enablerc = 1
+endif
 
-" Buffer move
-set wildmenu wildmode=full
-set wildchar=<Tab> wildcharm=<C-Z>
+let enableplug = getenv("VIM_ENABLEPLUG")
+if enableplug is v:null
+    let enableplug = 1
+endif
 
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
-nnoremap <space> za
+if enablerc != 0
+    syntax on
+    set nu
+    set ruler
+    set smartindent
+    set splitbelow
+    set hidden
+    set expandtab
+    set tabstop=4
+    set shiftwidth=4
+    set encoding=UTF-8
+    set background=dark
+    set signcolumn=number
+    set backspace=indent,eol,start
+    set wildmenu wildmode=full
+    set wildchar=<Tab> wildcharm=<C-Z>
+    let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
-" vim-plug
-call plug#begin()
+    highlight Visual cterm=bold ctermbg=darkgrey
+    highlight SignColumn ctermbg=darkgrey
 
-Plug 'airblade/vim-gitgutter'
-Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plug 'Chiel92/vim-autoformat'
-Plug 'jiangmiao/auto-pairs'
-Plug 'sillybun/vim-repl'
-Plug 'preservim/nerdcommenter'
-Plug 'ycm-core/YouCompleteMe'
-Plug 'dense-analysis/ale'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-Plug 'roxma/vim-tmux-clipboard'
-Plug 'mbbill/undotree'
+    autocmd InsertLeave * se nocul
+    autocmd InsertEnter * se cul
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+    inoremap jj <Esc>
+    nnoremap <silent><F10> :ter<cr>
 
-Plug 'skywind3000/asynctasks.vim'
-Plug 'skywind3000/asyncrun.vim'
+    " Enable folding
+    set foldmethod=indent
+    set foldlevel=99
+    nnoremap <space> za
 
-call plug#end()
+    if enableplug != 0
+        call plug#begin()
 
-" Powerline
-set laststatus=2
-set showtabline=2
-set noshowmode
+        Plug 'airblade/vim-gitgutter'
+        Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+        Plug 'Chiel92/vim-autoformat'
+        Plug 'jiangmiao/auto-pairs'
+        Plug 'sillybun/vim-repl'
+        Plug 'preservim/nerdcommenter'
+        Plug 'ycm-core/YouCompleteMe'
+        Plug 'dense-analysis/ale'
+        Plug 'Vimjas/vim-python-pep8-indent'
+        Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+        Plug 'roxma/vim-tmux-clipboard'
+        Plug 'mbbill/undotree'
 
-" Autoformat
-" au BufWrite * :Autoformat
-nnoremap <F3> :Autoformat<CR>
-autocmd FileType vim,tex let b:autoformat_autoindent=0
-let g:formatter_yapf_style = 'pep8'
-let r_indent_align_args = 0
-let g:formatdef_astyle_c = '"astyle --mode=c --style=google"'
-let g:formatters_c = ['astyle_c']
-let g:formatters_cpp = ['astyle_c']
+        Plug 'SirVer/ultisnips'
+        Plug 'honza/vim-snippets'
 
-" YCM
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
+        Plug 'skywind3000/asynctasks.vim'
+        Plug 'skywind3000/asyncrun.vim'
 
-" asyncrun.vim
-let g:asyncrun_open = 6
-let g:asynctasks_term_pos = 'quickfix'
-let g:asynctasks_term_reuse = 1
-nnoremap <silent><F5> :AsyncTask file-run<cr>
-nnoremap <silent><F9> :AsyncTask file-build<cr>
+        call plug#end()
 
-" vim-repl
-nnoremap <leader>r :REPLToggle<Cr>
-nnoremap <leader>e :REPLSendSession<Cr>
-let g:repl_python_pre_launch_command = 'source venv/bin/activate'
-let g:repl_program = {
-            \   'python': 'ptpython',
-            \   'default': 'zsh',
-            \   'r': 'R --no-save',
-            \   'lua': 'lua'
-            \   }
-let g:repl_predefine_python = {
-            \   'numpy': 'import numpy as np',
-            \   'pandas': 'import pandas as pd',
-            \   'matplotlib': 'import matplotlib.pyplot as plt'
-            \   }
-let g:repl_exit_commands = {
-            \   'ptpython': 'exit()',
-            \   'radian': 'q()',
-            \   'R': 'q()',
-            \   'bash': 'exit',
-            \   'zsh': 'exit',
-            \   'default': 'exit'
-            \   }
-let g:repl_position = 0
-let g:repl_console_name = 'REPL'
-let g:repl_cursor_down = 1
-let g:repl_python_auto_send_unfinish_line = 0
-let g:repl_python_automerge = 1
-let g:repl_python_auto_import = 0
+        " Powerline
+        set laststatus=2
+        set showtabline=2
+        set noshowmode
 
-" change repl position
-:function REPL_change_position()
-:   if g:repl_position == 0
-:       let g:repl_position = 3
-:       echom "Present REPL position: right"
-:   elseif g:repl_position == 3
-:       let g:repl_position = 0
-:       echom "Present REPL position: bottom"
-:   endif
-:endfunction
-:command REPLChangePosition :call REPL_change_position()
-noremap <silent><F12> :REPLChangePosition<cr>
+        " Autoformat
+        " au BufWrite * :Autoformat
+        nnoremap <F3> :Autoformat<CR>
+        autocmd FileType vim,tex let b:autoformat_autoindent=0
+        let g:formatter_yapf_style = 'pep8'
+        let r_indent_align_args = 0
+        let g:formatdef_astyle_c = '"astyle --mode=c --style=google"'
+        let g:formatters_c = ['astyle_c']
+        let g:formatters_cpp = ['astyle_c']
 
-" ultisnips
-let g:UltiSnipsExpandTrigger="<F1>"
+        " YCM
+        let g:ycm_autoclose_preview_window_after_insertion = 1
+        let g:ycm_autoclose_preview_window_after_completion = 1
 
-" ALE
-let g:ale_r_lintr_options = "with_defaults(camel_case_linter = NULL)"
-let g:ale_r_lintr_options = "with_defaults(object_name_linter = NULL)"
-let g:ale_python_flake8_options = '--config=$HOME/.config/flake8'
-let g:ale_linters = {'python': ['flake8']}
+        " asyncrun.vim
+        let g:asyncrun_open = 6
+        let g:asynctasks_term_pos = 'quickfix'
+        let g:asynctasks_term_reuse = 1
+        nnoremap <silent><F5> :AsyncTask file-run<cr>
+        nnoremap <silent><F9> :AsyncTask file-build<cr>
 
-" LeaderF
-let g:Lf_WindowHeight = 0.30
-nnoremap <leader>f :LeaderfSelf<cr>
-nnoremap <leader>fl :LeaderfLine<cr>
-nnoremap <leader>ft :LeaderfBufTag<cr>
-nnoremap <leader>ff :LeaderfFile<cr>
-nnoremap <leader>fu :LeaderfFunction<cr>
+        " vim-repl
+        nnoremap <leader>r :REPLToggle<Cr>
+        nnoremap <leader>e :REPLSendSession<Cr>
+        let g:repl_python_pre_launch_command = 'source venv/bin/activate'
+        let g:repl_program = {
+                    \   'python': 'ptpython',
+                    \   'default': 'zsh',
+                    \   'r': 'R --no-save',
+                    \   'lua': 'lua'
+                    \   }
+        let g:repl_predefine_python = {
+                    \   'numpy': 'import numpy as np',
+                    \   'pandas': 'import pandas as pd',
+                    \   'matplotlib': 'import matplotlib.pyplot as plt'
+                    \   }
+        let g:repl_exit_commands = {
+                    \   'ptpython': 'exit()',
+                    \   'radian': 'q()',
+                    \   'R': 'q()',
+                    \   'bash': 'exit',
+                    \   'zsh': 'exit',
+                    \   'default': 'exit'
+                    \   }
+        let g:repl_position = 0
+        let g:repl_console_name = 'REPL'
+        let g:repl_cursor_down = 1
+        let g:repl_python_auto_send_unfinish_line = 0
+        let g:repl_python_automerge = 1
+        let g:repl_python_auto_import = 0
 
-" undotree
-nnoremap <F8> :UndotreeToggle<CR>
+        " change repl position
+        function REPL_change_position()
+           if g:repl_position == 0
+               let g:repl_position = 3
+               echom "Present REPL position: right"
+           elseif g:repl_position == 3
+               let g:repl_position = 0
+               echom "Present REPL position: bottom"
+           endif
+        endfunction
+        command REPLChangePosition :call REPL_change_position()
+        noremap <silent><F12> :REPLChangePosition<cr>
+
+        " ultisnips
+        let g:UltiSnipsExpandTrigger="<F1>"
+
+        " ALE
+        let g:ale_r_lintr_options = "with_defaults(camel_case_linter = NULL)"
+        let g:ale_r_lintr_options = "with_defaults(object_name_linter = NULL)"
+        let g:ale_python_flake8_options = '--config=$HOME/.config/flake8'
+        let g:ale_linters = {'python': ['flake8']}
+
+        " LeaderF
+        let g:Lf_WindowHeight = 0.30
+        nnoremap <leader>f :LeaderfSelf<cr>
+        nnoremap <leader>fl :LeaderfLine<cr>
+        nnoremap <leader>ft :LeaderfBufTag<cr>
+        nnoremap <leader>ff :LeaderfFile<cr>
+        nnoremap <leader>fu :LeaderfFunction<cr>
+
+        " undotree
+        nnoremap <F8> :UndotreeToggle<CR>
+
+    endif
+endif
