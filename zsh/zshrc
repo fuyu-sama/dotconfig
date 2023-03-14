@@ -116,7 +116,7 @@ alias venvactivate="source venv/bin/activate"
 
 # source folder
 export PATH=$HOME/.local/source:$PATH
-export PATH=$HOME/.local/prefix/vim/8.2/bin:$PATH
+export PATH=$HOME/.local/prefix/vim/9.0/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 source $HOME/.user_path     # add user specific config here
 
