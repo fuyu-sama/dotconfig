@@ -147,3 +147,45 @@ alias nnn="nnn -de"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# set and unset proxy
+function set_proxy() {
+    if [[ $1 -eq "" ]]; then
+        PORT=8001
+    else
+        PORT=$1
+    fi
+    export http_proxy="http://127.0.0.1:$PORT"
+    export HTTP_PROXY="http://127.0.0.1:$PORT"
+
+    export https_proxy="http://127.0.0.1:$PORT"
+    export HTTPS_PROXY="http://127.0.0.1:$PORT"
+
+}
+
+function unset_proxy() {
+    unset http_proxy
+    unset HTTP_PROXY
+
+    unset https_proxy
+    unset HTTPS_PROXY
+
+}
+
+function set_remote_proxy() {
+    if [[ $1 == "" ]]; then
+        REMOTE_PORT=8001
+    else
+        REMOTE_PORT=$1
+    fi
+    if [[ $2 == "" ]]; then
+        LOCAL_PORT=8001
+    else
+        LOCAL_PORT=$2
+    fi
+
+    ssh -fCNR ${REMOTE_PORT}:localhost:${LOCAL_PORT} hongyz@peng-lab
+}
+
+alias unset_remote_proxy="\
+    pgrep ssh -a | grep fCNR | awk '{print \$1}' | xargs kill"
