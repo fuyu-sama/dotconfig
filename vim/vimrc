@@ -114,10 +114,10 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         # change repl position
         def REPL_change_position()
            if g:repl_position == 0
-               var g:repl_position = 3
+               g:repl_position = 3
                echom "Present REPL position: right"
            elseif g:repl_position == 3
-               var g:repl_position = 0
+               g:repl_position = 0
                echom "Present REPL position: bottom"
            endif
         enddef
