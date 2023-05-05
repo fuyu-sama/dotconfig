@@ -12,3 +12,6 @@ ln -f $DIR/i3status.config $HOME/.config/i3status/config
 
 [ -d $HOME/.config/polybar ] && rm -rf $HOME/.config/polybar
 ln -f -s $DIR/polybar $HOME/.config/polybar
+
+[ -d $HOME/.config/picom ] && rm -rf $HOME/.config/picom
+ln -f -s $DIR/picom $HOME/.config/picom
