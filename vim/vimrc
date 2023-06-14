@@ -6,6 +6,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
     set smartindent
     set splitbelow
     set hidden
+    set hlsearch
     set expandtab
     set tabstop=4
     set shiftwidth=4
