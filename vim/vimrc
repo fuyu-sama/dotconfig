@@ -136,6 +136,10 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
 
         # LeaderF
         g:Lf_WindowHeight = 0.30
+        g:Lf_WildIgnore = {
+            'file': ['*.pyc'],
+            'dir': ["venv", "renv", "__pycache__"]
+        }
         nnoremap <leader>f :LeaderfSelf<cr>
         nnoremap <leader>fl :LeaderfLine<cr>
         nnoremap <leader>ft :LeaderfBufTag<cr>
