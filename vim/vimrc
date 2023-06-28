@@ -45,6 +45,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
         Plug 'roxma/vim-tmux-clipboard'
         Plug 'mbbill/undotree'
+        Plug 'MattesGroeger/vim-bookmarks'
 
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
