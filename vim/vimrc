@@ -49,7 +49,6 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
 
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
-        Plug 'bling/vim-bufferline'
         Plug 'tpope/vim-fugitive'
 
         Plug 'SirVer/ultisnips'
@@ -64,12 +63,10 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         set laststatus=2
         set showtabline=2
         set noshowmode
-        g:bufferline_echo = 0
         g:airline_powerline_fonts = 1
         g:airline_theme = 'bubblegum'
         g:airline#parts#ffenc#skip_expected_string = 'utf-8[unix]'
         g:airline#extensions#tabline#enabled = 1
-        g:airline#extensions#tabline#show_buffers = 0
         g:airline#extensions#tabline#show_tab_type = 0
         g:airline#extensions#tabline#show_close_button = 0
         g:airline#extensions#tabline#excludes = ['REPL']
