@@ -183,6 +183,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
 
         # LeaderF
         g:Lf_WindowHeight = 0.30
+        g:Lf_StlSeparator = { 'left': '', 'right': '' }
         g:Lf_WildIgnore = {
             'file': ['*.pyc'],
             'dir': ["venv", "renv", "__pycache__"]
