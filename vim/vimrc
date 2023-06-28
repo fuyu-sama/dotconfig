@@ -111,7 +111,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         # Autoformat
         # au BufWrite * :Autoformat
         nnoremap <F3> :Autoformat<CR>
-        autocmd FileType vim,tex b:autoformat_autoindent=0
+        autocmd FileType vim,tex b:autoformat_autoindent = 0
         g:formatter_yapf_style = 'pep8'
         g:r_indent_align_args = 0
         g:formatdef_astyle_c = '"astyle --mode=c --style=google"'
