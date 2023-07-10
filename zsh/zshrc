@@ -150,11 +150,7 @@ alias nnn="nnn -de"
 
 # set and unset proxy
 function set_proxy() {
-    if [[ $1 -eq "" ]]; then
-        PORT=8001
-    else
-        PORT=$1
-    fi
+    PORT=${1:-8001}
     export http_proxy="http://127.0.0.1:$PORT"
     export HTTP_PROXY="http://127.0.0.1:$PORT"
 
@@ -173,17 +169,8 @@ function unset_proxy() {
 }
 
 function set_remote_proxy() {
-    if [[ $1 == "" ]]; then
-        REMOTE_PORT=8001
-    else
-        REMOTE_PORT=$1
-    fi
-    if [[ $2 == "" ]]; then
-        LOCAL_PORT=8001
-    else
-        LOCAL_PORT=$2
-    fi
-
+    REMOTE_PORT=${1:-8001}
+    LOCAL_PORT=${2:-8001}
     ssh -fCNR ${REMOTE_PORT}:localhost:${LOCAL_PORT} hongyz@peng-lab
 }
 
