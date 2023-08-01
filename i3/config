@@ -217,3 +217,7 @@ bindsym $mod+F12 exec "betterlockscreen -l"
 
 # hide title bar
 for_window [class=".*"] border pixel 5
+
+# move to scratch
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show 
