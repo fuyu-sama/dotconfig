@@ -16,6 +16,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
     set backspace=indent,eol,start
     set wildmenu wildmode=full
     set wildchar=<Tab> wildcharm=<C-Z>
+    set scrolloff=3
     g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
     highlight Visual cterm=bold ctermbg=darkgrey
