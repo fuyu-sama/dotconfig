@@ -1,0 +1,82 @@
+[
+    {
+        "name": "top",
+        "layer": "top",
+        "position": "top",
+        "height": 32,
+        "spacing": 4,
+        "modules-left": ["cpu", "memory", "disk"],
+        "modules-center": ["hyprland/window"],
+        "modules-right": ["clock"],
+        "idle_inhibitor": {
+            "format": "{icon}",
+            "format-icons": {
+                "activated": "",
+                "deactivated": ""
+            }
+        },
+        "cpu": {
+            "format": "  {usage}%",
+            "tooltip": false
+        },
+        "memory": {
+            "format": "  {}%"
+        },
+        "disk": {
+            "path": "/",
+            "format": "  {percentage_used}%"
+        },
+        "keyboard-state": {
+            "numlock": false,
+            "capslock": true,
+            "format": " {name} {icon}  ",
+            "format-icons": {
+                "locked": "",
+                "unlocked": ""
+            }
+        },
+        "clock": {
+            "interval": 1,
+            "format-alt": "  {:%I:%M:%S %p}",
+            "format": "  {:%Y-%m-%d     %I:%M:%S %p}",
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                 "mode": "month",
+                 "format": {
+                      "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+                 }
+            }
+        }
+    },
+    {
+        "name": "bottom",
+        "layer": "top",
+        "position": "bottom",
+        "height": 30,
+        "spacing": 4,
+        "modules-left": ["hyprland/workspaces"],
+        "modules-right": ["tray"],
+        "hyprland/workspaces": {
+            "all-outputs": true,
+            "warp-on-scroll": false,
+            "format": "{name}",
+            "format-icons": {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "",
+                "10": "",
+                "urgent": "",
+                "focused": "",
+                "default": ""
+            },
+            "on-scroll-up": "hyprctl dispatch workspace e-1",
+            "on-scroll-down": "hyprctl dispatch workspace e+1"
+        },
+        "tray": {
+            // "icon-size": 21,
+            "spacing": 10
+        }
+    }
+]
