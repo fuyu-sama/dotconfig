@@ -7,3 +7,4 @@ allow_images=true
 normal_window=true
 allow_markup=true
 no_actions=true
+insensitive=true

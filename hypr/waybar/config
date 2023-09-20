@@ -3,7 +3,7 @@
         "name": "top",
         "layer": "top",
         "position": "top",
-        "height": 32,
+        "height": 45,
         "spacing": 4,
         "modules-left": ["cpu", "memory", "disk"],
         "modules-center": ["hyprland/window"],
@@ -16,7 +16,7 @@
             }
         },
         "cpu": {
-            "format": "  {usage}%",
+            "format": "    {usage}%",
             "tooltip": false
         },
         "memory": {
@@ -37,8 +37,8 @@
         },
         "clock": {
             "interval": 1,
-            "format-alt": "  {:%I:%M:%S %p}",
-            "format": "  {:%Y-%m-%d     %I:%M:%S %p}",
+            "format-alt": "  {:%I:%M:%S %p}  ",
+            "format": "  {:%a, %b %d     %I:%M:%S %p}  ",
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
             "calendar": {
                  "mode": "month",
