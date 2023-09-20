@@ -1,0 +1,56 @@
+/*https://github.com/7KIR7/dots/blob/main/waybar/minimal/style.css*/
+*{
+    font-family: Code New Roman Nerd Font;
+    font-size: 15px;
+    min-height: 0;
+    color: black;
+}
+
+window#waybar {
+    /*background-color: transparent;*/
+    /*background-color: rgba(43, 48, 59, 0.5);*/
+    background-color: rgba(218, 218, 230, 0.8);
+}
+
+window#waybar.top {
+    /*background-color: transparent;*/
+    /*background-color: rgba(43, 48, 59, 0.5);*/
+    background-color: rgba(218, 218, 230, 0.8);
+    border: 5px solid rgba(0, 172, 193, 0.5);
+}
+
+#workspaces{
+    margin: 3px;
+}
+
+#workspaces button{
+    border-radius: 5px;
+    margin-right: 5px;
+    padding: 1px 4px;
+    font-weight: bolder;
+    background-color: transparent;
+}
+
+#workspaces button.active {
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    background: transparent;
+}
+
+#tray,
+#mpd,
+#custom-weather,
+#cpu,
+#temperature,
+#memory,
+#sway-mode,
+#backlight,
+#pulseaudio,
+#custom-vpn,
+#disk,
+#custom-recorder,
+#custom-audiorec,
+#battery,
+#clock,
+#network {
+    padding: 0 10px;
+}

@@ -8,5 +8,5 @@ ln -s $DIR/hypr $HOME/.config
 [ -d $HOME/.config/waybar ] && rm -rf $HOME/.config/waybar
 ln -s $DIR/waybar $HOME/.config
 
-[ -d $HOME/.config/wofi ] && rm -rf $HOME/.config/wofi
-ln -s $DIR/wofi $HOME/.config
+[ -d $HOME/.config/rofi ] && rm -rf $HOME/.config/rofi
+ln -s $DIR/rofi $HOME/.config

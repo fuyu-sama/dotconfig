@@ -1,56 +1,84 @@
-/*https://github.com/7KIR7/dots/blob/main/waybar/minimal/style.css*/
-*{
-    font-family: Code New Roman Nerd Font;
-    font-size: 15px;
-    min-height: 0;
-    color: black;
-}
-
+/*https://github.com/Petingoso/dotfiles/blob/master/dot_config/waybar/everforest.css*/
 window#waybar {
-    /*background-color: transparent;*/
-    /*background-color: rgba(43, 48, 59, 0.5);*/
-    background-color: rgba(218, 218, 230, 0.8);
+    background-color: #0c2a2a;
+    font-family: Iosevka Nerd Font;
+    color: #d3c6aa;
 }
 
-window#waybar.top {
-    /*background-color: transparent;*/
-    /*background-color: rgba(43, 48, 59, 0.5);*/
-    background-color: rgba(218, 218, 230, 0.8);
-    border: 5px solid rgba(0, 172, 193, 0.5);
+#workspaces {
+    font-size: 14px;
+    margin: 5px 8px;
+    color: #d3c6aa;
 }
 
-#workspaces{
-    margin: 3px;
-}
-
-#workspaces button{
-    border-radius: 5px;
-    margin-right: 5px;
-    padding: 1px 4px;
-    font-weight: bolder;
-    background-color: transparent;
+#workspaces button {
+    padding: 2px 7px;
+    color: #d3c6aa;
 }
 
 #workspaces button.active {
-    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-    background: transparent;
+    color: #d3c6aa;
+    border-color: #d3c6aa;
+    border-radius: 10px;
 }
 
-#tray,
-#mpd,
-#custom-weather,
+#workspaces button.focused {
+    color: #d3c6aa;
+    border-color: #d3c6aa;
+    border-radius: 10px;
+}
+
+#clock {
+    color: #dadada;
+    font-size: 1.2em;
+    margin: 5px 8px;
+}
+
+#custom-power {
+    color: #141b1e;
+    background-color: #e57474;
+    font-size: 15px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 13px;
+    margin: 5px 8px;
+}
+
+#custom-icon {
+    color: #141b1e;
+    background-color: #8ccf7e;
+    font-size: 15px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 13px;
+    margin: 5px 8px;
+}
+
+#custom-separator {
+    color: #dadada;
+    font-size: 1.2em;
+}
+
+#custom-wofi {
+    border-radius: 40px;
+    margin: 10px;
+    font-size:17px;
+    padding: 7px;
+    background-color: #232a2d;
+    color: #dadada;
+}
+
+#custom-notification {
+    font-size: 17px;
+    color: #ffffff;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
 #cpu,
 #temperature,
 #memory,
-#sway-mode,
-#backlight,
-#pulseaudio,
-#custom-vpn,
 #disk,
-#custom-recorder,
-#custom-audiorec,
-#battery,
-#clock,
 #network {
     padding: 0 10px;
 }

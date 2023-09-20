@@ -1,20 +1,70 @@
 [
     {
-        "name": "top",
+        "position": "bottom",
         "layer": "top",
-        "position": "top",
-        "height": 45,
-        "spacing": 4,
-        "modules-left": ["cpu", "memory", "disk"],
-        "modules-center": ["hyprland/window"],
-        "modules-right": ["clock"],
-        "idle_inhibitor": {
+        "height": 35,
+        "modules-left": ["custom/icon","hyprland/workspaces"],
+        "modules-right": ["tray", "custom/separator", "clock", "custom/power"],
+        "hyprland/workspaces": {
+            "all-outputs": true,
+            "on-click": "activate",
             "format": "{icon}",
+            "persistent_workspaces": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": []
+            },
             "format-icons": {
-                "activated": "",
-                "deactivated": ""
+                "1": "ー",
+                "2": "二",
+                "3": "三",
+                "4": "四",
+                "5": "五",
+                "6": "六",
+                "7": "七",
+                "8": "八",
+                "9": "九",
+                "10": "〇",
+                "default": "一"
             }
         },
+        "custom/power": {
+            "format": "⏻",
+            "tooltip": false,
+            "on-click": "sleep 0.1 && ~/.config/rofi/power.sh"
+        },
+        "clock": {
+            "format": "{:%I:%M}",
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                 "mode": "month",
+                 "format": {
+                      "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+                 }
+            }
+        },
+        "custom/icon": {
+            "format": "",
+            "tooltip": false,
+            "on-click": "sleep 0.1 && rofi -show drun"
+        },
+        "custom/separator": {
+            "format": " | ",
+            "tooltip": false,
+        },
+        "tray": {
+            "show-passive-items": true
+        }
+    },
+    {
+        "position": "top",
+        "layer": "top",
+        "height": 20,
+        "modules-left": ["cpu", "memory", "disk"],
+        "modules-center": ["hyprland/window"],
+        "modules-right": ["keyboard-state"],
         "cpu": {
             "format": "    {usage}%",
             "tooltip": false
@@ -27,56 +77,13 @@
             "format": "  {percentage_used}%"
         },
         "keyboard-state": {
-            "numlock": false,
+            "scrolllock": true,
             "capslock": true,
             "format": " {name} {icon}  ",
             "format-icons": {
                 "locked": "",
                 "unlocked": ""
             }
-        },
-        "clock": {
-            "interval": 1,
-            "format-alt": "  {:%I:%M:%S %p}  ",
-            "format": "  {:%a, %b %d     %I:%M:%S %p}  ",
-            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-            "calendar": {
-                 "mode": "month",
-                 "format": {
-                      "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-                 }
-            }
-        }
-    },
-    {
-        "name": "bottom",
-        "layer": "top",
-        "position": "bottom",
-        "height": 30,
-        "spacing": 4,
-        "modules-left": ["hyprland/workspaces"],
-        "modules-right": ["tray"],
-        "hyprland/workspaces": {
-            "all-outputs": true,
-            "warp-on-scroll": false,
-            "format": "{name}",
-            "format-icons": {
-                "1": "",
-                "2": "",
-                "3": "",
-                "4": "",
-                "5": "",
-                "10": "",
-                "urgent": "",
-                "focused": "",
-                "default": ""
-            },
-            "on-scroll-up": "hyprctl dispatch workspace e-1",
-            "on-scroll-down": "hyprctl dispatch workspace e+1"
-        },
-        "tray": {
-            // "icon-size": 21,
-            "spacing": 10
         }
     }
 ]
