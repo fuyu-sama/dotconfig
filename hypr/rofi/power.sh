@@ -8,10 +8,10 @@ shutdown=" Shutdown"
 reboot="󰑓 Restart"
 lock=" Lock"
 logout="󰍃 Logout"
-suspend=" Suspend"
+sleep="⏾ Sleep"
 cancel="󰜺 Cancel"
 
-option="$cancel\n$shutdown\n$reboot\n$logout"
+option="$cancel\n$sleep\n$shutdown\n$reboot\n$logout"
 
 select="$(echo -e "$option" | $prompt -p "Uptime - $uptime")"
 
@@ -21,5 +21,7 @@ case $select in
 	$reboot)
 		systemctl reboot;;
 	$logout)
-        hyprctl dispatch exit
+        hyprctl dispatch exit;;
+    $sleep)
+        hyprctl dispatch dpms off
 esac
