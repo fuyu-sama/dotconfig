@@ -38,7 +38,7 @@
             "on-click": "sleep 0.1 && ~/.config/rofi/power.sh"
         },
         "clock": {
-            "format": "{:%p  %I:%M\n%a %I/%d}",
+            "format": "{:%p  %I:%M\n%a %m/%d}",
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
             "calendar": {
                  "mode": "month",
