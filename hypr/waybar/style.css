@@ -30,8 +30,8 @@ window#waybar {
 
 #clock {
     color: #dadada;
-    font-size: 1.2em;
-    margin: 5px 8px;
+    font-size: 1em;
+    margin: 3px 8px;
 }
 
 #custom-power {
@@ -68,11 +68,8 @@ window#waybar {
     color: #dadada;
 }
 
-#custom-notification {
-    font-size: 17px;
-    color: #ffffff;
-    margin-left: 10px;
-    margin-bottom: 5px;
+#tray {
+    margin: 5px 8px;
 }
 
 #cpu,

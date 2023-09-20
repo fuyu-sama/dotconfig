@@ -2,7 +2,7 @@
     {
         "position": "bottom",
         "layer": "top",
-        "height": 35,
+        "height": 40,
         "modules-left": ["custom/icon","hyprland/workspaces"],
         "modules-right": ["tray", "custom/separator", "clock", "custom/power"],
         "hyprland/workspaces": {
@@ -38,7 +38,7 @@
             "on-click": "sleep 0.1 && ~/.config/rofi/power.sh"
         },
         "clock": {
-            "format": "{:%I:%M %p}",
+            "format": "{:%p  %I:%M\n%a %I/%d}",
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
             "calendar": {
                  "mode": "month",
@@ -57,7 +57,8 @@
             "tooltip": false,
         },
         "tray": {
-            "show-passive-items": true
+            "show-passive-items": true,
+            "spacing": 10
         }
     },
     {
