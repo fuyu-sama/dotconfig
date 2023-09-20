@@ -11,7 +11,7 @@ logout="󰍃 Logout"
 suspend=" Suspend"
 cancel="󰜺 Cancel"
 
-option="$cancel\n$shutdown\n$reboot\n$lock\n$suspend\n$logout"
+option="$cancel\n$shutdown\n$reboot\n$logout"
 
 select="$(echo -e "$option" | $prompt -p "Uptime - $uptime")"
 
@@ -20,10 +20,6 @@ case $select in
 		systemctl poweroff;;
 	$reboot)
 		systemctl reboot;;
-	$lock)
-		loginctl lock-session;;
-	$suspend)
-		systemctl suspend;;
 	$logout)
         hyprctl dispatch exit
 esac
