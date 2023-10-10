@@ -2,6 +2,6 @@
 
 sudo pacman -S hyprland hyprpaper waybar
 
-yay -S rofi-lbonn-wayland hyprshot
+yay -S rofi-lbonn-wayland hyprshot swaync
 
 ./update.sh
