@@ -13,3 +13,5 @@ ln -s $DIR/rofi $HOME/.config
 
 [ -d $HOME/.config/swaync ] && rm -rf $HOME/.config/swaync
 ln -s $DIR/swaync $HOME/.config
+
+ln $DIR/alacritty.yml $HOME/.alacritty.yml
