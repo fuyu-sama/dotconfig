@@ -32,3 +32,7 @@ snippet #! "#! /usr/bin/env Rscript" b
 $0
 endsnippet
 
+# WORKDIR
+snippet WORKDIR "WORKDIR"
+WORKDIR <- fs::path(Sys.getenv("HOME"), "workspace", "$0")
+endsnippet
