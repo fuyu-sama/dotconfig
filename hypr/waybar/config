@@ -4,7 +4,7 @@
         "layer": "top",
         "height": 40,
         "modules-left": ["custom/icon","hyprland/workspaces"],
-        "modules-right": ["tray", "custom/separator", "clock", "custom/power"],
+        "modules-right": ["tray", "custom/separator", "clock", "custom/notification"],
         "hyprland/workspaces": {
             "all-outputs": true,
             "on-click": "activate",
@@ -59,7 +59,23 @@
         "tray": {
             "show-passive-items": true,
             "spacing": 10
-        }
+        },
+        "custom/notification": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+                "notification": "󰍩",
+                "none": "󰍪",
+                "dnd-notification": "󰚣",
+                "dnd-none": "󱙎"
+            },
+            "return-type": "json",
+            "exec-if": "which swaync-client",
+            "exec": "swaync-client -swb",
+            "on-click": "sleep 0.1 && swaync-client -t -sw",
+            "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+            "escape": true
+        },
     },
     {
         "position": "top",

@@ -44,6 +44,16 @@ window#waybar {
     margin: 5px 8px;
 }
 
+#custom-notification {
+    color: #141b1e;
+    background-color: #e57474;
+    font-size: 15px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 15px;
+    margin: 5px 8px;
+}
+
 #custom-icon {
     color: #141b1e;
     background-color: #8ccf7e;
