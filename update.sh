@@ -21,7 +21,6 @@ ln -f $DIR/ptpython/config.py $HOME/.config/ptpython/config.py
 ln -f $DIR/ptpython/flake8 $HOME/.config/flake8
 # tmux
 ln -f $DIR/tmux/tmux.conf $HOME/.tmux.conf
-ln -f $DIR/tmux/ewrap $HOME/.ewrap
 # vim
 ln -f $DIR/vim/vimrc $HOME/.vimrc
 ln -f $DIR/vim/lintr $HOME/.lintr
