@@ -120,6 +120,14 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         # YCM
         g:ycm_autoclose_preview_window_after_insertion = 1
         g:ycm_autoclose_preview_window_after_completion = 1
+        g:ycm_language_server = [
+            {
+                'name': 'R',
+                'cmdline': ['R', '--slave', '-e', 'languageserver::run()'],
+                'filetypes': ['r'],
+                'project_root_files': ['renv']
+            }
+        ]
 
         # asyncrun.vim
         g:asyncrun_open = 6

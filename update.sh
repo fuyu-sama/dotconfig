@@ -24,6 +24,7 @@ ln -f $DIR/tmux/tmux.conf $HOME/.tmux.conf
 ln -f $DIR/tmux/ewrap $HOME/.ewrap
 # vim
 ln -f $DIR/vim/vimrc $HOME/.vimrc
+ln -f $DIR/vim/lintr $HOME/.lintr
 ln -f $DIR/vim/tasks.ini $HOME/.vim/tasks.ini
 [ -d $HOME/.vim/UltiSnips ] && rm $HOME/.vim/UltiSnips
 ln -f -s $DIR/vim/UltiSnips $HOME/.vim/UltiSnips
