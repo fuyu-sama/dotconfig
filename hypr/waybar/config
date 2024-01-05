@@ -4,17 +4,14 @@
         "layer": "top",
         "height": 40,
         "modules-left": ["custom/icon","hyprland/workspaces"],
-        "modules-right": ["tray", "custom/separator", "clock", "custom/notification"],
+        "modules-right": ["tray", "custom/separator", "pulseaudio", "clock", "custom/notification"],
         "hyprland/workspaces": {
             "all-outputs": true,
             "on-click": "activate",
             "format": "{icon}",
             "persistent_workspaces": {
                 "1": [],
-                "2": [],
-                "3": [],
-                "4": [],
-                "5": []
+                "10": []
             },
             "format-icons": {
                 "1": "ー",
@@ -26,7 +23,7 @@
                 "7": "七",
                 "8": "八",
                 "9": "九",
-                "10": "〇",
+                "10": " ",
                 "default": "一"
             },
             "on-scroll-up": "hyprctl dispatch workspace e-1",
@@ -76,6 +73,17 @@
             "on-click-right": "sleep 0.1 && swaync-client -d -sw",
             "escape": true
         },
+        "pulseaudio": {
+            "format": "{icon}  ",
+            "format-muted": "󰖁",
+            "format-icons": {
+                "default": ["󰖀", "󰕾"]
+            },
+            "tooltip-format": "{volume}%",
+            "scroll-step": 5,
+            "on-click": "pavucontrol",
+            "ignored-sinks": ["Easy Effects Sink"]
+        }
     },
     {
         "position": "top",
@@ -103,6 +111,6 @@
                 "locked": "",
                 "unlocked": ""
             }
-        }
+        },
     }
 ]
