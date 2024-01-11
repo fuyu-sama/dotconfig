@@ -11,10 +11,6 @@
         "hyprland/workspaces": {
             "all-outputs": true,
             "on-click": "activate",
-            "persistent_workspaces": {
-                /*"1": [],*/
-                /*"10": []*/
-            },
             "format-icons": {
                 "10": "0",
             },
@@ -29,6 +25,9 @@
                 "class<alacritty>": "",
                 "class<feh>": "",
                 "class<alacritty> title<.*remote.*>": " ",
+                "class<alacritty> title<.*admin1.*>": " ",
+                "class<alacritty> title<.*comput2.*>": " ",
+                "class<alacritty> title<.*comput3.*>": " ",
                 "class<alacritty> title<.*vim.*>": "",
                 "title<.*Dolphin>": "",
                 "title<Remmina.*>": "",
