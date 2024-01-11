@@ -43,3 +43,6 @@ style = "Regular"
 
 [window]
 opacity = 0.8
+
+[mouse]
+hide_when_typing = true
