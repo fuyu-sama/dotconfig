@@ -34,16 +34,6 @@ window#waybar {
     margin: 3px 8px;
 }
 
-#custom-power {
-    color: #141b1e;
-    background-color: #e57474;
-    font-size: 15px;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 13px;
-    margin: 5px 8px;
-}
-
 #custom-notification {
     color: #141b1e;
     background-color: #e57474;
@@ -82,10 +72,24 @@ window#waybar {
     margin: 5px 8px;
 }
 
+#custom-sleep,
+#custom-logout,
+#custom-reboot {
+    padding: 0 7px;
+}
+
+#custom-shutdown {
+    padding: 0 10px 0 7px;
+}
+
+#pulseaudio-slider {
+    min-height: 0px;
+    min-width: 80px;
+}
+
 #cpu,
 #temperature,
 #memory,
-#disk,
-#network {
+#disk {
     padding: 0 10px;
 }

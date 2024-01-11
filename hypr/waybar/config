@@ -3,36 +3,38 @@
         "position": "bottom",
         "layer": "top",
         "height": 40,
-        "modules-left": ["custom/icon","hyprland/workspaces"],
-        "modules-right": ["tray", "custom/separator", "pulseaudio", "clock", "custom/notification"],
+        "modules-left": ["custom/icon", "hyprland/workspaces"],
+        "modules-right": [
+            "tray", "custom/separator", "group/group-audio", "clock",
+            "custom/notification"
+        ],
         "hyprland/workspaces": {
             "all-outputs": true,
             "on-click": "activate",
-            "format": "{icon}",
             "persistent_workspaces": {
-                "1": [],
-                "10": []
+                /*"1": [],*/
+                /*"10": []*/
             },
             "format-icons": {
-                "1": "ー",
-                "2": "二",
-                "3": "三",
-                "4": "四",
-                "5": "五",
-                "6": "六",
-                "7": "七",
-                "8": "八",
-                "9": "九",
-                "10": " ",
-                "default": "一"
+                "10": "0",
             },
             "on-scroll-up": "hyprctl dispatch workspace e-1",
-            "on-scroll-down": "hyprctl dispatch workspace e+1"
-        },
-        "custom/power": {
-            "format": "⏻",
-            "tooltip": false,
-            "on-click": "sleep 0.1 && ~/.config/rofi/power.sh"
+            "on-scroll-down": "hyprctl dispatch workspace e+1",
+            "format": "{icon}: {windows}",
+            "format-window-separator": " ",
+            "window-rewrite-default": "",
+            "window-rewrite": {
+                "class<firefox>": "",
+                "class<scrcpy>": "󰀲",
+                "class<alacritty>": "",
+                "class<alacritty> title<.*remote.*>": " ",
+                "class<alacritty> title<.*vim.*>": "",
+                "title<.*Dolphin>": "",
+                "title<Remmina.*>": "",
+                "title<Win10.*>": "",
+                "title<.*VirtualBox.*>": "󰇅",
+                "code": "󰨞",
+            },
         },
         "clock": {
             "format": "{:%p  %I:%M\n%a %m/%d}",
@@ -73,9 +75,20 @@
             "on-click-right": "sleep 0.1 && swaync-client -d -sw",
             "escape": true
         },
+        "group/group-audio": {
+            "orientation": "inherit",
+            "drawer": {
+                "transition-duration": 500,
+                "transition-left-to-right": false,
+            },
+            "modules": [
+                "pulseaudio",
+                "pulseaudio/slider"
+            ]
+        },
         "pulseaudio": {
-            "format": "{icon}  ",
-            "format-muted": "󰖁",
+            "format": "{icon} ",
+            "format-muted": "󰖁 ",
             "format-icons": {
                 "default": ["󰖀", "󰕾"]
             },
@@ -91,9 +104,9 @@
         "height": 20,
         "modules-left": ["cpu", "memory", "disk"],
         "modules-center": ["hyprland/window"],
-        "modules-right": ["keyboard-state"],
+        "modules-right": ["group/group-power", "keyboard-state"],
         "cpu": {
-            "format": "    {usage}%",
+            "format": "   {usage}%",
             "tooltip": false
         },
         "memory": {
@@ -104,13 +117,47 @@
             "format": "  {percentage_used}%"
         },
         "keyboard-state": {
-            "scrolllock": true,
+            "scrolllock": false,
             "capslock": true,
-            "format": " {name} {icon}  ",
+            "format": " {name} {icon}   ",
             "format-icons": {
                 "locked": "",
                 "unlocked": ""
             }
         },
+        "group/group-power": {
+            "orientation": "inherit",
+            "drawer": {
+                "transition-duration": 500,
+                "children-class": "custom-shutdown",
+                "transition-left-to-right": false,
+            },
+            "modules": [
+                "custom/shutdown",
+                "custom/sleep",
+                "custom/logout",
+                "custom/reboot",
+            ]
+        },
+        "custom/sleep": {
+            "format": "Sleep ⏾",
+            "tooltip": false,
+            "on-click": "hyprctl dispatch dpms off"
+        },
+        "custom/logout": {
+            "format": "Logout 󰍃",
+            "tooltip": false,
+            "on-click": "hyprctl dispatch exit"
+        },
+        "custom/reboot": {
+            "format": "Reboot 󰑓",
+            "tooltip": false,
+            "on-click": "systemctl reboot"
+        },
+        "custom/shutdown": {
+            "format": "Power  ",
+            "tooltip": false,
+            "on-click": "systemctl poweroff"
+        }
     }
 ]
