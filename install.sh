@@ -47,8 +47,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 source $HOME/.zprofile
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
-INSTALL_PY_VERSION_SHORT=3.10
-INSTALL_PY_VERSION=${INSTALL_PY_VERSION_SHORT}.9
+INSTALL_PY_VERSION_SHORT=3.12
+INSTALL_PY_VERSION=${INSTALL_PY_VERSION_SHORT}.1
 pyenv install ${INSTALL_PY_VERSION}
 pyenv global ${INSTALL_PY_VERSION}
 pip install \
@@ -73,7 +73,7 @@ if ! [[ $dist == "arch" ]]; then
         --enable-perlinterp=yes \
         --enable-luainterp=yes \
         --enable-cscope \
-        --prefix=$HOME/.local/prefix/vim/9.0
+        --prefix=$HOME/.local/prefix/vim/9.1
     make && make install
     cd -
 fi
