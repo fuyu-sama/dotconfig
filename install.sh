@@ -47,8 +47,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 source $HOME/.zprofile
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
-INSTALL_PY_VERSION_SHORT=3.12
-INSTALL_PY_VERSION=${INSTALL_PY_VERSION_SHORT}.1
+INSTALL_PY_VERSION_SHORT=3.11
+INSTALL_PY_VERSION=${INSTALL_PY_VERSION_SHORT}.7
 pyenv install ${INSTALL_PY_VERSION}
 pyenv global ${INSTALL_PY_VERSION}
 pip install \
