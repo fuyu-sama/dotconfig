@@ -52,7 +52,7 @@ INSTALL_PY_VERSION=${INSTALL_PY_VERSION_SHORT}.1
 pyenv install ${INSTALL_PY_VERSION}
 pyenv global ${INSTALL_PY_VERSION}
 pip install \
-    ptpython flake8 yapf thefuck
+    ptpython flake8 yapf
 
 # autojump
 git clone https://github.com/wting/autojump.git Downloads/autojump
