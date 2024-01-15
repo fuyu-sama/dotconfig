@@ -151,7 +151,7 @@
         "custom/logout": {
             "format": "Logout 󰍃",
             "tooltip": false,
-            "on-click": "$HOME/dotconfig/hypr/waybar/logout.sh"
+            "on-click": "hyprctl dispatch exit"
         },
         "custom/reboot": {
             "format": "Reboot 󰑓",
