@@ -37,7 +37,6 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         call plug#begin()
 
         Plug 'Chiel92/vim-autoformat'
-        Plug 'jiangmiao/auto-pairs'
         Plug 'sillybun/vim-repl'
         Plug 'preservim/nerdcommenter'
         Plug 'ycm-core/YouCompleteMe'
