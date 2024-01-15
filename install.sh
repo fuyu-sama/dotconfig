@@ -48,7 +48,7 @@ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 source $HOME/.zprofile
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
 INSTALL_PY_VERSION_SHORT=3.11
-INSTALL_PY_VERSION=${INSTALL_PY_VERSION_SHORT}.7
+INSTALL_PY_VERSION=${INSTALL_PY_VERSION_SHORT}.6
 pyenv install ${INSTALL_PY_VERSION}
 pyenv global ${INSTALL_PY_VERSION}
 pip install \
