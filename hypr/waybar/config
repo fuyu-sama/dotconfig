@@ -29,6 +29,7 @@
                 "class<alacritty> title<.*comput2.*>": " ",
                 "class<alacritty> title<.*comput3.*>": " ",
                 "class<alacritty> title<.*vim.*>": "",
+                "class<alacritty> title<.*python.*>": "",
                 "title<.*Dolphin>": "",
                 "title<Remmina.*>": "",
                 "title<Win10.*>": "",
