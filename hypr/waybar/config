@@ -21,6 +21,7 @@
             "window-rewrite-default": "",
             "window-rewrite": {
                 "class<firefox>": "",
+                "class<firefox> title<.*Music.*>": "",
                 "class<scrcpy>": "󰀲",
                 "class<feh>": "󰋫",
                 "class<alacritty>": "",
@@ -30,6 +31,8 @@
                 "class<alacritty> title<.*comput3.*>": " ",
                 "class<alacritty> title<.*vim.*>": "",
                 "class<alacritty> title<.*python.*>": "",
+                "class<alacritty> title<.*pacman.*>": "󰮯",
+                "class<alacritty> title<.*yay.*>": "󰮯",
                 "title<.*Dolphin>": "",
                 "title<Remmina.*>": "",
                 "title<Win10.*>": "",
