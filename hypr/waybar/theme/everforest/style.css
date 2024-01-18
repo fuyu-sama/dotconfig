@@ -1,47 +1,47 @@
 /*https://github.com/Petingoso/dotfiles/blob/master/dot_config/waybar/everforest.css*/
 window#waybar {
-     background-color: #0c2a2a; 
-    /*background: transparent;*/
+    background-color: #0c2a2a;
     font-family: Iosevka Nerd Font;
+    color: #d3c6aa;
 }
 
 #workspaces {
-margin: 10px;
-  margin-top: 4px;
-  padding: 7px;
-  padding-left: 4px;
-  border-radius: 50px;
-  background: transparent;
-  font-size: 14px;    
+    font-size: 14px;
+    margin: 5px 8px;
+    color: #d3c6aa;
 }
 
 #workspaces button {
-  color: #4b565c;
-   padding: 2px 7px;
-}
-
-#workspaces button:hover {
-  background: #232a2d;
+    padding: 2px 7px;
+    color: #d3c6aa;
 }
 
 #workspaces button.active {
-  color: #d3c6aa;
+    color: #d3c6aa;
+    border-color: #d3c6aa;
+    border-radius: 10px;
 }
 
-#custom-power {
-    color: #141b1e;
-    background-color: #e57474; 
-    font-size: 15px;
+#workspaces button.focused {
+    color: #d3c6aa;
+    border-color: #d3c6aa;
     border-radius: 10px;
-    padding: 10px 0px;
-    margin: 0px 10px;
-    margin-bottom: 5px;
 }
 
 #clock {
     color: #dadada;
-    font-size: 1.2em;
-    margin-bottom: 8px;
+    font-size: 1em;
+    margin: 3px 8px;
+}
+
+#custom-notification {
+    color: #141b1e;
+    background-color: #e57474;
+    font-size: 15px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 15px;
+    margin: 5px 8px;
 }
 
 #custom-icon {
@@ -49,24 +49,18 @@ margin: 10px;
     background-color: #8ccf7e;
     font-size: 15px;
     border-radius: 10px;
-    padding: 10 0px;
-    margin: 0 10px;
-    margin-bottom: 5px;
-    margin-top: 8px;
+    padding-left: 10px;
+    padding-right: 13px;
+    margin: 5px 8px;
 }
 
 #custom-separator {
-    color: #dadada; 
-}
-
-#battery {
-    margin-top: 8px;
     color: #dadada;
-    font-size: 17px;
+    font-size: 1.2em;
 }
 
 #custom-wofi {
-    border-radius: 50px;
+    border-radius: 40px;
     margin: 10px;
     font-size:17px;
     padding: 7px;
@@ -74,9 +68,28 @@ margin: 10px;
     color: #dadada;
 }
 
-#custom-notification {
-    font-size: 17px;
-    color: #ffffff;
-    margin-left: 10px;
-    margin-bottom: 5px;
+#tray {
+    margin: 5px 8px;
+}
+
+#custom-sleep,
+#custom-logout,
+#custom-reboot {
+    padding: 0 7px;
+}
+
+#custom-shutdown {
+    padding: 0 10px 0 7px;
+}
+
+#pulseaudio-slider {
+    min-height: 0px;
+    min-width: 80px;
+}
+
+#cpu,
+#temperature,
+#memory,
+#disk {
+    padding: 0 10px;
 }

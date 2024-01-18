@@ -1,72 +1,167 @@
-{
-    "position": "left",
-    "modules-left": ["custom/icon","hyprland/workspaces"],
-    "modules-right": [ "custom/notification", "tray", "battery", "custom/separator", "clock", "custom/power"],
-    "hyprland/workspaces": {
-    	"all-outputs": true,
-	"on-click": "activate",
-	"format": "{icon}",
-	"persistent_workspaces": {
-	   "1": [],
-	   "2": [],
-	   "3": [],
-	   "4": [],
-	   "5": []
-	},
-	"format-icons": {
-      "1": "ー",
-      "2": "二",
-      "3": "三",
-      "4": "四",
-      "5": "五",
-      "6": "六",
-      "7": "七",
-      "8": "八",
-      "9": "九",
-      "10": "〇",
-      "default": "一"
-	}
+[
+    {
+        "position": "bottom",
+        "layer": "top",
+        "height": 40,
+        "modules-left": ["custom/icon", "hyprland/workspaces"],
+        "modules-right": [
+            "tray", "custom/separator", "group/group-audio", "clock",
+            "custom/notification"
+        ],
+        "hyprland/workspaces": {
+            "all-outputs": true,
+            "on-click": "activate",
+            "format-icons": {
+                "10": "0",
+            },
+            "on-scroll-up": "hyprctl dispatch workspace e-1",
+            "on-scroll-down": "hyprctl dispatch workspace e+1",
+            "format": "{icon}: {windows}",
+            "format-window-separator": " ",
+            "window-rewrite-default": "",
+            "window-rewrite": {
+                "class<firefox>": "",
+                "class<firefox> title<.*Music.*>": "",
+                "class<scrcpy>": "󰀲",
+                "class<feh>": "󰋫",
+                "class<alacritty>": "",
+                "class<alacritty> title<.*remote.*>": " ",
+                "class<alacritty> title<.*admin1.*>": " ",
+                "class<alacritty> title<.*comput2.*>": " ",
+                "class<alacritty> title<.*comput3.*>": " ",
+                "class<alacritty> title<.*vim.*>": "",
+                "class<alacritty> title<.*python.*>": "",
+                "class<alacritty> title<.*pacman.*>": "󰮯",
+                "class<alacritty> title<.*yay.*>": "󰮯",
+                "title<.*Dolphin>": "",
+                "title<Remmina.*>": "",
+                "title<Win10.*>": "",
+                "title<.*Gwenview>": "󰋫",
+                "code": "󰨞",
+            },
+        },
+        "clock": {
+            "format": "{:%p  %I:%M\n%a %m/%d}",
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                 "mode": "month",
+                 "format": {
+                      "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+                 }
+            }
+        },
+        "custom/icon": {
+            "format": "",
+            "tooltip": false,
+            "on-click": "sleep 0.1 && rofi -show drun"
+        },
+        "custom/separator": {
+            "format": " | ",
+            "tooltip": false,
+        },
+        "tray": {
+            "show-passive-items": true,
+            "spacing": 10
+        },
+        "custom/notification": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+                "notification": "󰍩",
+                "none": "󰍪",
+                "dnd-notification": "󰚣",
+                "dnd-none": "󱙎"
+            },
+            "return-type": "json",
+            "exec-if": "which swaync-client",
+            "exec": "swaync-client -swb",
+            "on-click": "sleep 0.1 && swaync-client -t -sw",
+            "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+            "escape": true
+        },
+        "group/group-audio": {
+            "orientation": "inherit",
+            "drawer": {
+                "transition-duration": 500,
+                "transition-left-to-right": false,
+            },
+            "modules": [
+                "pulseaudio",
+                "pulseaudio/slider"
+            ]
+        },
+        "pulseaudio": {
+            "format": "{icon} ",
+            "format-muted": "󰖁 ",
+            "format-icons": {
+                "default": ["󰖀", "󰕾"]
+            },
+            "tooltip-format": "{volume}%",
+            "scroll-step": 5,
+            "on-click": "pavucontrol",
+            "ignored-sinks": ["Easy Effects Sink"]
+        }
     },
-    "custom/power": {
-        "format": "⏻",
-        "on-click": "~/.local/bin/powermenu"
-    },
-    "clock": {
-        "format": "{:%H\n%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "custom/icon": {
-	"format": "",
-	"on-click": "~/.config/rofi/scripts/launcher_t1"
-    },
-    "custom/separator": {
-	"format": "──────"
-    },
-    "battery": {
-	"format": "{capacity}%"
-    },
-    "custom/rofi": {
-	"format": "",
-	"on-click": "~/.config/rofi/scripts/launcher_t1"
-    },
-    "custom/notification": {
-    "tooltip": false,
-    "format": "{icon}",
-    "format-icons": {
-    "notification": " ",
-    "none": " ",
-    "dnd-notification": " <span foreground='red'><sup></sup></span>",
-    "dnd-none": " "
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -C",
-    "on-click-right": "swaync-client -d -sw",
-    "escape": true
-	},
-    "tray": {
-	"show-passive-items": true
-	}
+    {
+        "position": "top",
+        "layer": "top",
+        "height": 20,
+        "modules-left": ["cpu", "memory", "disk"],
+        "modules-center": ["hyprland/window"],
+        "modules-right": ["group/group-power", "keyboard-state"],
+        "cpu": {
+            "format": "   {usage}%",
+            "tooltip": false
+        },
+        "memory": {
+            "format": "  {}%"
+        },
+        "disk": {
+            "path": "/",
+            "format": "  {percentage_used}%"
+        },
+        "keyboard-state": {
+            "scrolllock": false,
+            "capslock": true,
+            "format": " {name} {icon}   ",
+            "format-icons": {
+                "locked": "",
+                "unlocked": ""
+            }
+        },
+        "group/group-power": {
+            "orientation": "inherit",
+            "drawer": {
+                "transition-duration": 500,
+                "children-class": "custom-shutdown",
+                "transition-left-to-right": false,
+            },
+            "modules": [
+                "custom/shutdown",
+                "custom/sleep",
+                "custom/logout",
+                "custom/reboot",
+            ]
+        },
+        "custom/sleep": {
+            "format": "Sleep ⏾",
+            "tooltip": false,
+            "on-click": "hyprctl dispatch dpms off"
+        },
+        "custom/logout": {
+            "format": "Logout 󰍃",
+            "tooltip": false,
+            "on-click": "hyprctl dispatch exit"
+        },
+        "custom/reboot": {
+            "format": "Reboot 󰑓",
+            "tooltip": false,
+            "on-click": "systemctl reboot"
+        },
+        "custom/shutdown": {
+            "format": "Power  ",
+            "tooltip": false,
+            "on-click": "systemctl poweroff"
+        }
     }
-}
+]
