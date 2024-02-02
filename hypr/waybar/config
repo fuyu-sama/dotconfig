@@ -21,7 +21,9 @@
             "window-rewrite-default": "",
             "window-rewrite": {
                 "class<firefox>": "",
+                "class<google-chrome>": "",
                 "class<firefox> title<.*Music.*>": "",
+                "class<google-chrome> title<.*Music.*>": "",
                 "class<scrcpy>": "󰀲",
                 "class<feh>": "󰋫",
                 "class<alacritty>": "",
