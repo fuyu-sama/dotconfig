@@ -128,6 +128,10 @@ export TERMINFO=/usr/share/terminfo
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 
+# asdf
+export PYTHON_CONFIGURE_OPTS="--enable-shared"
+export R_EXTRA_CONFIGURE_OPTIONS='--enable-R-shlib'
+
 alias nnn="nnn -de"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
