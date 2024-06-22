@@ -27,6 +27,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
 
     inoremap jj <Esc>
     nnoremap <silent><F10> :ter<cr>
+    nnoremap <F11> :nohls<CR>
 
     # Enable folding
     set foldmethod=indent
@@ -43,7 +44,6 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         Plug 'dense-analysis/ale'
         Plug 'Vimjas/vim-python-pep8-indent'
         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-        Plug 'roxma/vim-tmux-clipboard'
         Plug 'mbbill/undotree'
         Plug 'MattesGroeger/vim-bookmarks'
 
@@ -133,7 +133,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         g:asynctasks_term_pos = 'quickfix'
         g:asynctasks_term_reuse = 1
         nnoremap <silent><F5> :AsyncTask file-run<cr>
-        nnoremap <silent><F9> :AsyncTask file-build<cr>
+        nnoremap <silent><F6> :AsyncTask file-build<cr>
 
         # vim-repl
         nnoremap <leader>r :REPLToggle<Cr>
@@ -213,7 +213,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         nnoremap <leader>fu :LeaderfFunction<cr>
 
         # undotree
-        nnoremap <F8> :UndotreeToggle<CR>
+        nnoremap <F9> :UndotreeToggle<CR>
 
     endif
 endif
