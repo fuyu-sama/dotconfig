@@ -165,3 +165,10 @@ function set_remote_proxy() {
 
 alias unset_remote_proxy="\
     pgrep ssh -a | grep fCNR | awk '{print \$1}' | xargs kill"
+
+function mount.peng-lab() {
+    present_dir=`pwd`
+    present_dir=${present_dir/"\/home"/"/public/home"}
+    sshfs hongyz@peng-lab:${present_dir}/Data Data -o idmap=user -o follow_symlinks
+    sshfs hongyz@peng-lab:${present_dir}/results results -o idmap=user -o follow_symlinks
+}
