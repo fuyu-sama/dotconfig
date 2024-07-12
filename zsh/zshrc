@@ -169,6 +169,7 @@ alias unset_remote_proxy="\
 function mount.peng-lab() {
     present_dir=`pwd`
     present_dir=${present_dir/"\/home"/"/public/home"}
-    sshfs hongyz@peng-lab:${present_dir}/Data Data -o idmap=user -o follow_symlinks
-    sshfs hongyz@peng-lab:${present_dir}/results results -o idmap=user -o follow_symlinks
+    params="follow_symlinks,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,idmap=user"
+    sshfs hongyz@peng-lab:${present_dir}/Data Data -o ${params}
+    sshfs hongyz@peng-lab:${present_dir}/results results -o ${params}
 }
