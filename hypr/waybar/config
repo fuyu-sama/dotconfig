@@ -39,6 +39,7 @@
                 "title<Remmina.*>": "",
                 "title<Win10.*>": "",
                 "title<.*Gwenview>": "󰋫",
+                "title<.*Vivaldi.*>": "",
                 "code": "󰨞",
             },
         },
