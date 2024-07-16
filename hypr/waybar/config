@@ -149,22 +149,22 @@
         "custom/sleep": {
             "format": "Sleep ⏾",
             "tooltip": false,
-            "on-click": "hyprctl dispatch dpms off"
+            "on-click": "$HOME/.config/rofi/power.sh '⏾ Sleep'"
         },
         "custom/logout": {
             "format": "Logout 󰍃",
             "tooltip": false,
-            "on-click": "hyprctl dispatch exit"
+            "on-click": "$HOME/.config/rofi/power.sh '󰍃 Logout'"
         },
         "custom/reboot": {
             "format": "Reboot 󰑓",
             "tooltip": false,
-            "on-click": "systemctl reboot"
+            "on-click": "$HOME/.config/rofi/power.sh '󰑓 Reboot'"
         },
         "custom/shutdown": {
             "format": "Power  ",
             "tooltip": false,
-            "on-click": "systemctl poweroff"
+            "on-click": "$HOME/.config/rofi/power.sh ' Power'"
         }
     }
 ]
