@@ -38,7 +38,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         call plug#begin()
 
         Plug 'Chiel92/vim-autoformat'
-        Plug 'sillybun/vim-repl'
+        Plug 'fuyu-sama/vim-repl'
         Plug 'preservim/nerdcommenter'
         Plug 'ycm-core/YouCompleteMe'
         Plug 'dense-analysis/ale'
@@ -164,6 +164,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         g:repl_python_auto_send_unfinish_line = 0
         g:repl_python_automerge = 1
         g:repl_python_auto_import = 0
+        g:repl_remote = 'hongyz@peng-lab'
 
         # change repl position
         def REPL_change_position()
