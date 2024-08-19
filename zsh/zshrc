@@ -157,19 +157,5 @@ function unset_proxy() {
 
 }
 
-function set_remote_proxy() {
-    REMOTE_PORT=${1:-8001}
-    LOCAL_PORT=${2:-8001}
-    ssh -fCNR ${REMOTE_PORT}:localhost:${LOCAL_PORT} hongyz@peng-lab
-}
-
 alias unset_remote_proxy="\
     pgrep ssh -a | grep fCNR | awk '{print \$1}' | xargs kill"
-
-function mount.peng-lab() {
-    present_dir=`pwd`
-    present_dir=${present_dir/"\/home"/"/public/home"}
-    params="follow_symlinks,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,idmap=user"
-    sshfs hongyz@peng-lab:${present_dir}/Data Data -o ${params}
-    sshfs hongyz@peng-lab:${present_dir}/results results -o ${params}
-}
