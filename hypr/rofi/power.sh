@@ -6,12 +6,13 @@ prompt_confirm="rofi -dmenu -theme $HOME/.config/rofi/confirm.rasi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
 cancel="󰜺 Cancel"
+lock=" Lock"
 sleep="⏾ Sleep"
 logout="󰍃 Logout"
 reboot="󰑓 Reboot"
 power=" Power"
 
-option="$cancel\n$sleep\n$logout\n$reboot\n$power"
+option="$cancel\n$lock\n$logout\n$reboot\n$power"
 
 select=${1:-`echo -e "$option" | $prompt -p "Uptime - $uptime"`}
 
@@ -24,11 +25,21 @@ function confirm() {
     fi
 }
 
+function sleep_lock() {
+    hyprlock &
+    while pidof hyprlock; do
+        sleep 120
+        pidof hyprlock && hyprctl dispatch dpms off
+    done
+}
+
 case $select in
     $logout)
         confirm "Logout" "hyprctl dispatch exit";;
     $sleep)
         hyprctl dispatch dpms off;;
+    $lock)
+        sleep_lock;;
     $reboot)
         confirm "Reboot" "systemctl reboot";;
     $power)
