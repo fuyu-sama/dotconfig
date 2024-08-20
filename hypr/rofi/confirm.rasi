@@ -17,6 +17,9 @@ configuration {
     display-window:             "";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
+    hover-select:               true;
+    me-select-entry:            "";
+    me-accept-entry: [ MousePrimary, MouseSecondary, MouseDPrimary ];
 }
 
 /*****----- Global Properties -----*****/
