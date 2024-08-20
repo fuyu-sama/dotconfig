@@ -147,9 +147,9 @@
             ]
         },
         "custom/sleep": {
-            "format": "Sleep ⏾",
+            "format": "Lock ",
             "tooltip": false,
-            "on-click": "$HOME/.config/rofi/power.sh '⏾ Sleep'"
+            "on-click": "$HOME/.config/rofi/power.sh ' Lock'"
         },
         "custom/logout": {
             "format": "Logout 󰍃",
