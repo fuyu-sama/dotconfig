@@ -25,12 +25,10 @@ function confirm() {
     fi
 }
 
-function sleep_lock() {
-    hyprlock &
-    while pidof hyprlock; do
-        sleep 120
-        pidof hyprlock && hyprctl dispatch dpms off
-    done
+function lock() {
+    hypridle &
+    hyprlock
+    kill `pidof hypridle`
 }
 
 case $select in
@@ -39,7 +37,7 @@ case $select in
     $sleep)
         hyprctl dispatch dpms off;;
     $lock)
-        sleep_lock;;
+        lock;;
     $reboot)
         confirm "Reboot" "systemctl reboot";;
     $power)
