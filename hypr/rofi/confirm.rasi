@@ -19,7 +19,7 @@ configuration {
 	window-format:              "{w} · {c} · {t}";
     hover-select:               true;
     me-select-entry:            "";
-    me-accept-entry: [ MousePrimary, MouseSecondary, MouseDPrimary ];
+    me-accept-entry:            "MousePrimary";
 }
 
 /*****----- Global Properties -----*****/
