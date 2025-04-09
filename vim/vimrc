@@ -157,7 +157,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         g:repl_exit_commands = {
             'ptpython': 'exit()',
             'radian': 'q()',
-            'R': 'q()',
+            'R': 'q()\n exit',
             'bash': 'exit',
             'zsh': 'exit',
             'default': 'exit'
@@ -168,7 +168,6 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         g:repl_python_auto_send_unfinish_line = 0
         g:repl_python_automerge = 1
         g:repl_python_auto_import = 0
-        g:repl_remote = 'hongyz@peng-lab'
 
         # change repl position
         def REPL_change_position()
