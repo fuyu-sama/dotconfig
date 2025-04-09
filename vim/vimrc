@@ -17,6 +17,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
     set wildmenu wildmode=full
     set wildchar=<Tab> wildcharm=<C-Z>
     set scrolloff=3
+    set nocompatible
     g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
     highlight Visual cterm=bold ctermbg=darkgrey
@@ -33,6 +34,8 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
     set foldmethod=indent
     set foldlevel=99
     nnoremap <space> za
+    autocmd InsertLeave,WinEnter * setlocal foldmethod=indent
+    autocmd InsertEnter,WinLeave * setlocal foldmethod=manual
 
     if $VIM_ENABLEPLUG != "0" || $VIM_ENABLEPLUG == ""
         call plug#begin()
@@ -46,6 +49,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
         Plug 'mbbill/undotree'
         Plug 'MattesGroeger/vim-bookmarks'
+        Plug 'sheerun/vim-polyglot'
 
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
