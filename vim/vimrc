@@ -162,7 +162,7 @@ if $VIM_ENABLERC != "0" || $VIM_ENABLERC == ""
             'zsh': 'exit',
             'default': 'exit'
             }
-        g:repl_position = 0
+        g:repl_position = 3
         g:repl_console_name = 'REPL'
         g:repl_cursor_down = 1
         g:repl_python_auto_send_unfinish_line = 0

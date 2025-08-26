@@ -119,10 +119,12 @@ export PATH=$HOME/.local/source:$PATH
 export PATH=$HOME/.local/prefix/vim/9.0/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 source $HOME/.user_path     # add user specific config here
+source $HOME/.zprofile      # add user specific config here
 
 # zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bold"
 export TERMINFO=/usr/share/terminfo
+bindkey '^[accept' autosuggest-accept
 
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
@@ -130,7 +132,7 @@ autoload -U compinit && compinit -u
 
 # asdf
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
-export R_EXTRA_CONFIGURE_OPTIONS='--enable-R-shlib'
+export R_EXTRA_CONFIGURE_OPTIONS='--enable-R-shlib --with-x=no'
 
 alias nnn="nnn -de"
 
