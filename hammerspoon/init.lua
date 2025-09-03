@@ -49,81 +49,59 @@ local function removeSpace()
     end
 end
 
--- Function to move window to space using mouse drag simulation
--- https://github.com/Hammerspoon/hammerspoon/issues/3698#issuecomment-3030151832
-local function moveWindowToSpaceByDrag(spaceNumber)
-    local win = hs.window.focusedWindow()
-    if not win then
-        hs.alert.show("No focused window")
-        return
-    end
-    
-    -- Calculate window header position (near top-left)
-    local frame = win:frame()
-    local headerX = frame.x + 15
-    local headerY = frame.y + 15
-    
-    -- Store current mouse position
-    local currentMouse = hs.mouse.absolutePosition()
-    
-    -- Move mouse to window header
-    hs.mouse.absolutePosition({x = headerX, y = headerY})
-    hs.timer.usleep(10000)  -- Wait 10ms
-    
-    -- Mouse down (press and hold)
-    local mouseDown = hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftMouseDown, {x = headerX, y = headerY})
-    mouseDown:post()
-    hs.timer.usleep(10000)  -- Wait 10ms
-    
-    -- Press Alt + number key (while holding mouse)
-    hs.eventtap.keyStroke({"ctrl"}, tostring(spaceNumber), 0)
-    hs.timer.usleep(10000)  -- Wait 10ms
-    
-    -- Mouse up (release)
-    local mouseUp = hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftMouseUp, {x = headerX, y = headerY})
-    mouseUp:post()
-    hs.timer.usleep(10000)  -- Wait 10ms
-    
-    -- Restore original mouse position
-    hs.mouse.absolutePosition(currentMouse)
-    
-    hs.alert.show("Moved window to space " .. spaceNumber)
-end
-
 local function moveWindowToSpace(spaceIndex)
     local win = hs.window.focusedWindow()
     if not win then
         hs.alert("没有找到当前窗口")
         return false
     end
-    
+
     local scr = screen.mainScreen()
     local currentSpace = spaces.activeSpaces()[scr:getUUID()]
-    local allSpaces = spaces.allSpaces()[scr:getUUID()]
-    
-    if spaceIndex < 1 or spaceIndex > #allSpaces then
-        hs.alert("Space " .. spaceIndex .. " 不存在")
-        return false
+    local allSpaces = getIndexedSpaces()
+
+    if spaceIndex > #allSpaces then
+        newSpace()
     end
-    
+
     local targetSpace = allSpaces[spaceIndex]
-    
+
     if currentSpace == targetSpace then
-        hs.alert("窗口已经在 Space " .. spaceIndex)
         return true
     end
-    
+
     local success = Drag:focusedWindowToSpace(targetSpace)
-    
-    if success then
-        hs.alert("已将窗口移动到 Space " .. spaceIndex)
-        return true
-    else
-        hs.alert("移动窗口到 Space " .. spaceIndex .. " 失败")
-        return false
-    end
+
+    return success
 end
 
+-- iTerm2 控制模块
+local iterm2 = {}
+
+function iterm2.createWindow()
+    local applescript = [[
+        tell application "iTerm2"
+            try
+                set newWindow to (create window with default profile)
+                activate
+                return "success"
+            on error errMsg
+                return "error: " & errMsg
+            end try
+        end tell
+    ]]
+
+    local ok, result = hs.osascript.applescript(applescript)
+
+    if not ok or string.find(result or "", "error:") then
+        hs.alert("❌ 创建 iTerm2 失败", 2)
+        return false
+    end
+
+    return true
+end
+
+hotkey.bind({"alt"}, "return", function() iterm2.createWindow() end)
 hotkey.bind({"alt"}, "N", newSpace)
 hotkey.bind({"alt"}, "D", removeSpace)
 
