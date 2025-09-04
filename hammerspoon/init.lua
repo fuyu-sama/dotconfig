@@ -30,7 +30,7 @@ function spaceCtrl.gotoSpace(iSpace)
         hs.spaces.gotoSpace(indexedSpaces[iSpace])
         hs.timer.usleep(spaceCtrl.config.sleepDuration)
     else
-        newSpace()
+        spaceCtrl.newSpace()
     end
 end
 
@@ -81,7 +81,7 @@ end
 
 function spaceCtrl.init()
     hs.hotkey.bind({"alt"}, "N", spaceCtrl.newSpace)
-    hs.hotkey.bind({"alt"}, "D", spaceCtrl.removeSpace)
+    hs.hotkey.bind({"alt"}, "W", spaceCtrl.removeSpace)
 
     hs.hotkey.bind({"alt"}, "1", function() spaceCtrl.gotoSpace(1) end)
     hs.hotkey.bind({"alt"}, "2", function() spaceCtrl.gotoSpace(2) end)
