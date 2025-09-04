@@ -1,41 +1,43 @@
-local spaces = require("hs.spaces")
-local hotkey = require("hs.hotkey")
-local screen = require("hs.screen")
-
--- https://github.com/mogenson/Drag.spoon
-Drag = hs.loadSpoon("Drag")
-
+-- utils
 local function getIndexedSpaces()
-    local scr = screen.mainScreen()
-    local indexedSpaces = spaces.allSpaces()[scr:getUUID()]
+    local scr = hs.screen.mainScreen()
+    local indexedSpaces = hs.spaces.allSpaces()[scr:getUUID()]
     return indexedSpaces
 end
 
-local function newSpace()
-    local scr = screen.mainScreen()
-    spaces.addSpaceToScreen(scr, false)
+
+-- space control 模块
+local spaceCtrl = {}
+
+spaceCtrl.config = {
+    sleepDuration = .5 * 100000,
+    alertDuration = 1
+}
+
+-- new space
+function spaceCtrl.newSpace()
+    local scr = hs.screen.mainScreen()
+    hs.spaces.addSpaceToScreen(scr, false)
     local indexedSpaces = getIndexedSpaces()
-    spaces.gotoSpace(indexedSpaces[#indexedSpaces])
-    hs.timer.usleep(300000)
-    hs.alert("桌面" .. #indexedSpaces)
+    hs.spaces.gotoSpace(indexedSpaces[#indexedSpaces])
+    hs.timer.usleep(spaceCtrl.config.sleepDuration)
 end
 
-local function gotoSpaceEnhance(iSpace)
+function spaceCtrl.gotoSpace(iSpace)
     local indexedSpaces = getIndexedSpaces()
     local totalSpaces = #indexedSpaces
     if iSpace <= totalSpaces then
-        spaces.gotoSpace(indexedSpaces[iSpace])
-        hs.timer.usleep(300000)
-        hs.alert("桌面" .. iSpace)
+        hs.spaces.gotoSpace(indexedSpaces[iSpace])
+        hs.timer.usleep(spaceCtrl.config.sleepDuration)
     else
         newSpace()
     end
 end
 
-local function removeSpace()
+function spaceCtrl.removeSpace()
     local indexedSpaces = getIndexedSpaces()
     local spaceCount = #indexedSpaces
-    local currentSpace = spaces.focusedSpace()
+    local currentSpace = hs.spaces.focusedSpace()
     local icurrentSpace = nil
     for i, spaceID in ipairs(indexedSpaces) do
         if spaceID == currentSpace then
@@ -43,21 +45,23 @@ local function removeSpace()
         end
     end
     if spaceCount > 1 then
-        gotoSpaceEnhance(icurrentSpace - 1)
+        spaceCtrl.gotoSpace(icurrentSpace - 1)
         hs.timer.usleep(300000)
-        spaces.removeSpace(currentSpace)
+        hs.spaces.removeSpace(currentSpace)
     end
 end
 
-local function moveWindowToSpace(spaceIndex)
+-- https://github.com/mogenson/Drag.spoon
+Drag = hs.loadSpoon("Drag")
+function spaceCtrl.moveToSpace(spaceIndex)
     local win = hs.window.focusedWindow()
     if not win then
-        hs.alert("没有找到当前窗口")
+        hs.alert("没有找到当前窗口", spaceCtrl.config.alertDuration)
         return false
     end
 
-    local scr = screen.mainScreen()
-    local currentSpace = spaces.activeSpaces()[scr:getUUID()]
+    local scr = hs.screen.mainScreen()
+    local currentSpace = hs.spaces.activeSpaces()[scr:getUUID()]
     local allSpaces = getIndexedSpaces()
 
     if spaceIndex > #allSpaces then
@@ -73,6 +77,34 @@ local function moveWindowToSpace(spaceIndex)
     local success = Drag:focusedWindowToSpace(targetSpace)
 
     return success
+end
+
+function spaceCtrl.init()
+    hs.hotkey.bind({"alt"}, "N", spaceCtrl.newSpace)
+    hs.hotkey.bind({"alt"}, "D", spaceCtrl.removeSpace)
+
+    hs.hotkey.bind({"alt"}, "1", function() spaceCtrl.gotoSpace(1) end)
+    hs.hotkey.bind({"alt"}, "2", function() spaceCtrl.gotoSpace(2) end)
+    hs.hotkey.bind({"alt"}, "3", function() spaceCtrl.gotoSpace(3) end)
+    hs.hotkey.bind({"alt"}, "4", function() spaceCtrl.gotoSpace(4) end)
+    hs.hotkey.bind({"alt"}, "5", function() spaceCtrl.gotoSpace(5) end)
+    hs.hotkey.bind({"alt"}, "6", function() spaceCtrl.gotoSpace(6) end)
+    hs.hotkey.bind({"alt"}, "7", function() spaceCtrl.gotoSpace(7) end)
+    hs.hotkey.bind({"alt"}, "8", function() spaceCtrl.gotoSpace(8) end)
+    hs.hotkey.bind({"alt"}, "9", function() spaceCtrl.gotoSpace(9) end)
+    hs.hotkey.bind({"alt"}, "0", function() spaceCtrl.gotoSpace(10) end)
+
+
+    hs.hotkey.bind({"alt", "shift"}, "1", function() spaceCtrl.moveToSpace(1) end)
+    hs.hotkey.bind({"alt", "shift"}, "2", function() spaceCtrl.moveToSpace(2) end)
+    hs.hotkey.bind({"alt", "shift"}, "3", function() spaceCtrl.moveToSpace(3) end)
+    hs.hotkey.bind({"alt", "shift"}, "4", function() spaceCtrl.moveToSpace(4) end)
+    hs.hotkey.bind({"alt", "shift"}, "5", function() spaceCtrl.moveToSpace(5) end)
+    hs.hotkey.bind({"alt", "shift"}, "6", function() spaceCtrl.moveToSpace(6) end)
+    hs.hotkey.bind({"alt", "shift"}, "7", function() spaceCtrl.moveToSpace(7) end)
+    hs.hotkey.bind({"alt", "shift"}, "8", function() spaceCtrl.moveToSpace(8) end)
+    hs.hotkey.bind({"alt", "shift"}, "9", function() spaceCtrl.moveToSpace(9) end)
+    hs.hotkey.bind({"alt", "shift"}, "0", function() spaceCtrl.moveToSpace(0) end)
 end
 
 -- iTerm2 控制模块
@@ -94,35 +126,222 @@ function iterm2.createWindow()
     local ok, result = hs.osascript.applescript(applescript)
 
     if not ok or string.find(result or "", "error:") then
-        hs.alert("❌ 创建 iTerm2 失败", 2)
         return false
     end
 
     return true
 end
 
-hotkey.bind({"alt"}, "return", function() iterm2.createWindow() end)
-hotkey.bind({"alt"}, "N", newSpace)
-hotkey.bind({"alt"}, "D", removeSpace)
+function iterm2.init()
+    hs.hotkey.bind({"alt"}, "return", function() iterm2.createWindow() end)
+end
 
-hotkey.bind({"alt"}, "1", function() gotoSpaceEnhance(1) end)
-hotkey.bind({"alt"}, "2", function() gotoSpaceEnhance(2) end)
-hotkey.bind({"alt"}, "3", function() gotoSpaceEnhance(3) end)
-hotkey.bind({"alt"}, "4", function() gotoSpaceEnhance(4) end)
-hotkey.bind({"alt"}, "5", function() gotoSpaceEnhance(5) end)
-hotkey.bind({"alt"}, "6", function() gotoSpaceEnhance(6) end)
-hotkey.bind({"alt"}, "7", function() gotoSpaceEnhance(7) end)
-hotkey.bind({"alt"}, "8", function() gotoSpaceEnhance(8) end)
-hotkey.bind({"alt"}, "9", function() gotoSpaceEnhance(9) end)
-hotkey.bind({"alt"}, "0", function() gotoSpaceEnhance(10) end)
 
-hotkey.bind({"alt", "shift"}, "1", function() moveWindowToSpace(1) end)
-hotkey.bind({"alt", "shift"}, "2", function() moveWindowToSpace(2) end)
-hotkey.bind({"alt", "shift"}, "3", function() moveWindowToSpace(3) end)
-hotkey.bind({"alt", "shift"}, "4", function() moveWindowToSpace(4) end)
-hotkey.bind({"alt", "shift"}, "5", function() moveWindowToSpace(5) end)
-hotkey.bind({"alt", "shift"}, "6", function() moveWindowToSpace(6) end)
-hotkey.bind({"alt", "shift"}, "7", function() moveWindowToSpace(7) end)
-hotkey.bind({"alt", "shift"}, "8", function() moveWindowToSpace(8) end)
-hotkey.bind({"alt", "shift"}, "9", function() moveWindowToSpace(9) end)
-hotkey.bind({"alt", "shift"}, "0", function() moveWindowToSpace(0) end)
+-- 改进版屏幕切换器（确保激活目标桌面）
+local screenSwitcher = {}
+
+-- 配置选项
+screenSwitcher.config = {
+    hotkeyModifiers = {"alt"},
+    moveCursor = true,          -- 是否移动光标
+    focusWindow = true,         -- 是否聚焦窗口
+    showAlert = false,           -- 是否显示提示
+    alertDuration = 1,          -- 提示显示时间
+    cursorPosition = "center",  -- 光标位置: "center", "previous", "last"
+    activateDesktop = true      -- 确保激活目标桌面
+}
+
+-- 存储每个屏幕最后的光标位置
+screenSwitcher.lastCursorPositions = {}
+
+-- 激活目标桌面的方法
+function screenSwitcher.activateTargetDesktop(targetScreen)
+    if not screenSwitcher.config.activateDesktop then
+        return
+    end
+    
+    -- 方法1: 使用系统事件激活桌面
+    local targetFrame = targetScreen:frame()
+    local centerPos = {
+        x = targetFrame.x + targetFrame.w / 2,
+        y = targetFrame.y + targetFrame.h / 2
+    }
+    
+    -- 确保鼠标在目标屏幕上
+    hs.mouse.absolutePosition(centerPos)
+    
+    -- 方法2: 模拟点击来激活桌面
+    hs.timer.doAfter(0.05, function()
+        local currentPos = hs.mouse.absolutePosition()
+        hs.eventtap.leftClick(currentPos, 0)
+    end)
+    
+    -- 方法3: 使用AppleScript激活Finder（确保桌面激活）
+    hs.timer.doAfter(0.1, function()
+        local applescript = [[
+        tell application "Finder"
+            activate
+            set visible of front window to false
+        end tell
+        ]]
+        hs.osascript.applescript(applescript)
+    end)
+end
+
+-- 获取目标屏幕上最合适的窗口
+function screenSwitcher.findBestWindowOnScreen(targetScreen)
+    local orderedWindows = hs.window.orderedWindows()
+    local targetWindow = nil
+    
+    -- 首先尝试找到标准窗口
+    for _, window in ipairs(orderedWindows) do
+        if window:screen() == targetScreen and
+           window:isStandard() and
+           window:isVisible() and
+           not window:isMinimized() then
+            targetWindow = window
+            break
+        end
+    end
+    
+    -- 如果没有标准窗口，尝试找到任何可见窗口
+    if not targetWindow then
+        for _, window in ipairs(orderedWindows) do
+            if window:screen() == targetScreen and
+               window:isVisible() and
+               not window:isMinimized() then
+                targetWindow = window
+                break
+            end
+        end
+    end
+    
+    -- 如果还是没有窗口，尝试找到桌面（Finder）
+    if not targetWindow then
+        local allWindows = hs.window.allWindows()
+        for _, window in ipairs(allWindows) do
+            if window:screen() == targetScreen and
+               window:application() and
+               window:application():name() == "Finder" then
+                targetWindow = window
+                break
+            end
+        end
+    end
+    
+    return targetWindow
+end
+
+function screenSwitcher.switchScreen(direction)
+    local screens = hs.screen.allScreens()
+    if #screens <= 1 then 
+        if screenSwitcher.config.showAlert then
+            hs.alert("只有一个屏幕", screenSwitcher.config.alertDuration)
+        end
+        return 
+    end
+    
+    -- 获取当前屏幕
+    local currentWindow = hs.window.focusedWindow()
+    local currentScreen = currentWindow and currentWindow:screen() or hs.screen.mainScreen()
+    
+    -- 保存当前屏幕的光标位置
+    local currentMousePos = hs.mouse.absolutePosition()
+    screenSwitcher.lastCursorPositions[currentScreen:name()] = currentMousePos
+    
+    -- 查找当前屏幕索引
+    local currentIndex = 1
+    for i, screen in ipairs(screens) do
+        if screen == currentScreen then
+            currentIndex = i
+            break
+        end
+    end
+    
+    -- 计算目标屏幕索引
+    local targetIndex
+    if direction == "next" then
+        targetIndex = currentIndex % #screens + 1
+    else
+        targetIndex = currentIndex - 1
+        if targetIndex < 1 then targetIndex = #screens end
+    end
+    
+    local targetScreen = screens[targetIndex]
+    
+    -- 移动光标
+    if screenSwitcher.config.moveCursor then
+        local targetPos
+        
+        if screenSwitcher.config.cursorPosition == "last" then
+            -- 使用上次在该屏幕的位置
+            targetPos = screenSwitcher.lastCursorPositions[targetScreen:name()] or 
+                       {x = targetScreen:frame().x + targetScreen:frame().w / 2,
+                        y = targetScreen:frame().y + targetScreen:frame().h / 2}
+        elseif screenSwitcher.config.cursorPosition == "previous" then
+            -- 使用相对位置（保持与当前屏幕的相对位置）
+            local currentFrame = currentScreen:frame()
+            local targetFrame = targetScreen:frame()
+            local relX = (currentMousePos.x - currentFrame.x) / currentFrame.w
+            local relY = (currentMousePos.y - currentFrame.y) / currentFrame.h
+            
+            targetPos = {
+                x = targetFrame.x + targetFrame.w * relX,
+                y = targetFrame.y + targetFrame.h * relY
+            }
+        else
+            -- 使用中心位置
+            targetPos = {
+                x = targetScreen:frame().x + targetScreen:frame().w / 2,
+                y = targetScreen:frame().y + targetScreen:frame().h / 2
+            }
+        end
+        
+        hs.mouse.absolutePosition(targetPos)
+    end
+    
+    -- 查找并聚焦窗口
+    local targetWindow = screenSwitcher.findBestWindowOnScreen(targetScreen)
+    
+    if targetWindow then
+        -- 有窗口，聚焦它
+        targetWindow:focus()
+        if screenSwitcher.config.showAlert then
+            hs.alert("屏幕 " .. targetIndex .. ": " .. targetWindow:application():name(), 
+                     screenSwitcher.config.alertDuration)
+        end
+    else
+        -- 没有窗口，激活桌面
+        screenSwitcher.activateTargetDesktop(targetScreen)
+        if screenSwitcher.config.showAlert then
+            hs.alert("激活屏幕 " .. targetIndex, screenSwitcher.config.alertDuration)
+        end
+    end
+end
+
+-- 初始化
+function screenSwitcher.init()
+    hs.hotkey.bind(
+        screenSwitcher.config.hotkeyModifiers, "right",
+        function() screenSwitcher.switchScreen("next") end
+    )
+    
+    hs.hotkey.bind(
+        screenSwitcher.config.hotkeyModifiers, "left",
+        function() screenSwitcher.switchScreen("prev") end
+    )
+
+    hs.hotkey.bind(
+        screenSwitcher.config.hotkeyModifiers, "S",
+        function() screenSwitcher.switchScreen("next") end
+    )
+
+    if screenSwitcher.config.showAlert then
+        hs.alert("屏幕切换器已启用 - 确保桌面激活", 2)
+    end
+end
+
+-- 启动
+spaceCtrl.init()
+iterm2.init()
+screenSwitcher.init()
