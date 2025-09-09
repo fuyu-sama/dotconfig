@@ -14,7 +14,6 @@ spaceCtrl.config = {
     alertDuration = 1
 }
 
--- new space
 function spaceCtrl.newSpace()
     local scr = hs.screen.mainScreen()
     hs.spaces.addSpaceToScreen(scr, false)
@@ -341,7 +340,61 @@ function screenSwitcher.init()
     end
 end
 
+
+local inputSwitcher = {}
+-- 定义要监控的终端应用名称
+inputSwitcher.config = {
+    englishApps = {"iTerm2", "Terminal", "Hyper", "Alacritty", "Code"},
+    chineseApps = {"QQ", "微信", "Cherry Studio"},
+    englishInputMethod = "com.apple.keylayout.ABC",
+    chineseInputMethod = "com.apple.inputmethod.SCIM.ITABC",
+    showAlert = false
+}
+
+-- 定义输入法状态
+
+-- 获取当前应用
+function inputSwitcher.getCurrentApp()
+    return hs.application.frontmostApplication():name()
+end
+
+-- 切换输入法
+function inputSwitcher.switchInputMethod(inputMethod)
+    hs.keycodes.currentSourceID(inputMethod)
+    if inputSwitcher.config.showAlert then
+        hs.alert.show("Switched to " .. inputMethod)
+    end
+end
+
+-- 监控应用切换事件
+function inputSwitcher.init()
+    appWatcher = hs.application.watcher.new(function(appName, eventType, app)
+        if eventType == hs.application.watcher.activated then
+            if hs.fnutils.contains(inputSwitcher.config.englishApps, appName) then
+                inputSwitcher.switchInputMethod(inputSwitcher.config.englishInputMethod)
+            elseif hs.fnutils.contains(inputSwitcher.config.chineseApps, appName) then
+                inputSwitcher.switchInputMethod(inputSwitcher.config.chineseInputMethod)
+            else
+                if inputSwitcher.config.showAlert then
+                    hs.alert.show("No matching app found")
+                end
+            end
+        end
+    end)
+    appWatcher:start()
+end
+
+
+local function getFrontApp()
+    local frontApp = hs.application.frontmostApplication()
+    print(frontApp:name())
+    hs.alert(frontApp:name())
+end
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "C", getFrontApp)
+
+
 -- 启动
 spaceCtrl.init()
 iterm2.init()
 screenSwitcher.init()
+inputSwitcher.init()
