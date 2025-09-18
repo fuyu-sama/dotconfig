@@ -135,6 +135,7 @@ export PYTHON_CONFIGURE_OPTS="--enable-shared"
 export R_EXTRA_CONFIGURE_OPTIONS='--enable-R-shlib --with-x=no'
 
 alias nnn="nnn -de"
+export PTPYTHON_CONFIG_HOME=$HOME/.config/ptpython
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

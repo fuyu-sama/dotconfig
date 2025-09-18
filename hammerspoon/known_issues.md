@@ -1,0 +1,1 @@
+windowMover与firefox不兼容，需要按好多次才会过去
