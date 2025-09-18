@@ -393,8 +393,90 @@ end
 hs.hotkey.bind({"ctrl", "alt", "cmd"}, "C", getFrontApp)
 
 
+-- 将当前窗口移动到下一个屏幕（显示器），保持在屏幕上的相对位置与大小
+local windowMover = {}
+windowMover.config = {
+    hotkeyModifiers = {"alt", "shift"},
+    showAlert = false
+}
+local mash = {"alt", "shift"} -- Option = alt, Shift = shift
+
+function windowMover.moveWindowToNextScreenKeepRelative()
+    local win = hs.window.focusedWindow()
+    if not win then
+        if windowMover.showAlert then
+            hs.alert.show("没有激活窗口")
+        end
+        return
+    end
+
+    local curScreen = win:screen()
+    if not curScreen then
+        if windowMover.showAlert then
+            hs.alert.show("无法获取窗口所在屏幕")
+        end
+        return
+    end
+
+    local allScreens = hs.screen.allScreens()
+    if #allScreens < 2 then
+        if windowMover.showAlert then
+            hs.alert.show("只有一个屏幕")
+        end
+        return
+    end
+
+    -- 找到当前屏幕在所有屏幕数组中的索引，然后取下一个（循环）
+    local curIndex = nil
+    for i, s in ipairs(allScreens) do
+        if s == curScreen then
+            curIndex = i
+            break
+        end
+    end
+    if not curIndex then
+        if windowMover.showAlert then
+            hs.alert.show("找不到当前屏幕索引")
+        end
+        return
+    end
+    local nextIndex = curIndex % #allScreens + 1
+    local nextScreen = allScreens[nextIndex]
+
+    -- 计算窗口在当前屏幕的相对位置（归一化为0-1）
+    local screenFrame = curScreen:frame()
+    local winFrame = win:frame()
+
+    local rel = {
+        x = (winFrame.x - screenFrame.x) / screenFrame.w,
+        y = (winFrame.y - screenFrame.y) / screenFrame.h,
+        w = winFrame.w / screenFrame.w,
+        h = winFrame.h / screenFrame.h
+    }
+
+    -- 将窗口移动到下一个屏幕并按相对位置/大小设置
+    local nextFrame = nextScreen:frame()
+    local newFrame = {
+        x = math.floor(nextFrame.x + rel.x * nextFrame.w + 0.5),
+        y = math.floor(nextFrame.y + rel.y * nextFrame.h + 0.5),
+        w = math.floor(rel.w * nextFrame.w + 0.5),
+        h = math.floor(rel.h * nextFrame.h + 0.5)
+    }
+
+    win:setFrame(newFrame)
+end
+
+function windowMover.init()
+    hs.hotkey.bind(
+        windowMover.config.hotkeyModifiers, "s",
+        windowMover.moveWindowToNextScreenKeepRelative
+    )
+end
+
+
 -- 启动
 spaceCtrl.init()
 iterm2.init()
 screenSwitcher.init()
 inputSwitcher.init()
+windowMover.init()
