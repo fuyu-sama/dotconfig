@@ -21,7 +21,7 @@ function M.switchInputMethod(inputMethod)
 end
 
 function M.init()
-    local appWatcher = hs.application.watcher.new(function(appName, eventType, app)
+    appWatcher = hs.application.watcher.new(function(appName, eventType, app)
         if eventType == hs.application.watcher.activated then
             if hs.fnutils.contains(M.config.englishApps, appName) then
                 M.switchInputMethod(M.config.englishInputMethod)
