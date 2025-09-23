@@ -9,11 +9,11 @@ M.config = {
     alertDuration = 1
 }
 
-function M.newSpace(gotoNewSpace)
+function M.newSpace(notGotoNewSpace)
     local scr = hs.screen.mainScreen()
-    hs.spaces.addSpaceToScreen(scr, false)
+    hs.spaces.addSpaceToScreen(scr, notGotoNewSpace)
     local indexedSpaces = utils.getIndexedSpaces()
-    if gotoNewSpace then
+    if not notGotoNewSpace then
         hs.spaces.gotoSpace(indexedSpaces[#indexedSpaces])
     end
     hs.timer.usleep(M.config.sleepDuration)
@@ -26,7 +26,7 @@ function M.gotoSpace(iSpace)
         hs.spaces.gotoSpace(indexedSpaces[iSpace])
         hs.timer.usleep(M.config.sleepDuration)
     else
-        M.newSpace()
+        M.newSpace(false)
     end
 end
 
@@ -40,8 +40,14 @@ function M.removeSpace()
             icurrentSpace = i
         end
     end
-    if spaceCount > 1 then
-        M.gotoSpace(icurrentSpace - 1)
+    if icurrentSpace > 1 then
+        if spaceCount > 1 then
+            M.gotoSpace(icurrentSpace - 1)
+            hs.timer.usleep(300000)
+            hs.spaces.removeSpace(currentSpace)
+        end
+    elseif icurrentSpace == 1 then
+         M.gotoSpace(2)
         hs.timer.usleep(300000)
         hs.spaces.removeSpace(currentSpace)
     end
@@ -60,7 +66,7 @@ function M.moveToSpace(spaceIndex)
     local allSpaces = utils.getIndexedSpaces()
 
     if spaceIndex > #allSpaces then
-        M.newSpace(false)
+        M.newSpace(true)
     end
 
     local targetSpace = allSpaces[spaceIndex]
@@ -75,7 +81,7 @@ function M.moveToSpace(spaceIndex)
 end
 
 function M.init()
-    hs.hotkey.bind({"alt"}, "N", M.newSpace)
+    hs.hotkey.bind({"alt"}, "N", function() M.newSpace(false) end)
     hs.hotkey.bind({"alt"}, "W", M.removeSpace)
 
     for i = 1, 10 do
